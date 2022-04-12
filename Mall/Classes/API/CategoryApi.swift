@@ -81,10 +81,10 @@ extension CategoryApi : BaseApi {
         
         switch self {
         case .superCategory:
-            return .requestParameters(parameters: [
-            "version" : "v1.1.0",
-             "appKey" : "612bcfe884763",
-            "sign":"2c6efa428c88445fa9040ebe3d433954"], encoding: URLEncoding.default)
+            var parametDict = BaseApiConfig.defaultParameters
+            parametDict["version"] = "v1.1.0"
+            return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
+            
             
         case .listSuperTaoBaoGoods(let keyWords, let hasCoupon, let type, let sort ,let currentPage, let pageSize):
             var parametDict = [String: String]()
@@ -100,18 +100,12 @@ extension CategoryApi : BaseApi {
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
         
         case .getTaoBaoGoodsDetails(let goodsId):
-            var parametDict = [String: String]()
-            parametDict["appKey"] = "612bcfe884763"
-            parametDict["sign"] = "a54d6dcbd8cf12a3920989d36a636c4d"
-            parametDict["version"] = "v1.2.3"
+            var parametDict = BaseApiConfig.defaultParameters
             parametDict["goodsId"] = goodsId
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
      
         case .getTaoBaolistSimilerGoods(let goodsId):
-            var parametDict = [String: String]()
-            parametDict["appKey"] = "612bcfe884763"
-            parametDict["sign"] = "aa5b6041f47e11987b8054903f8245b7"
-            parametDict["version"] = "v1.2.2"
+            var parametDict = BaseApiConfig.defaultParameters
             parametDict["id"] = goodsId
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
             
@@ -126,10 +120,7 @@ extension CategoryApi : BaseApi {
             "keyWords":"\(keyWords)"], encoding: URLEncoding.default)
 
         case .getJDGoodsDetails(let skuIds):
-            var parametDict = [String: String]()
-            parametDict["appKey"] = "612bcfe884763"
-            parametDict["sign"] = "8460450d8b4e029692ebb857b14571f2"
-            parametDict["version"] = "v1.0.0"
+            var parametDict = BaseApiConfig.defaultParameters
             parametDict["skuIds"] = skuIds
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
             

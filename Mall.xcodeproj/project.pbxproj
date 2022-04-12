@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D6B3C03F1032D5AF7B2BE13 /* Pods_Mall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48CA481DACA2926D5829FE92 /* Pods_Mall.framework */; };
+		E722806028056D7E0089345F /* MMActivityApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722805F28056D7E0089345F /* MMActivityApi.swift */; };
 		E73134852803D4C600C725A1 /* MMHomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73134842803D4C600C725A1 /* MMHomeMainView.swift */; };
 		E73134872803DAB200C725A1 /* UIView+MMExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73134862803DAB200C725A1 /* UIView+MMExtension.swift */; };
 		E73134892804077B00C725A1 /* MMHorizontalPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73134882804077B00C725A1 /* MMHorizontalPageLayout.swift */; };
@@ -52,6 +53,7 @@
 		48CA481DACA2926D5829FE92 /* Pods_Mall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E471830CE29B08A16C9D2C /* Pods-Mall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mall.debug.xcconfig"; path = "Target Support Files/Pods-Mall/Pods-Mall.debug.xcconfig"; sourceTree = "<group>"; };
 		C4BB2BF7B82CF065166BD2D0 /* Pods-Mall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mall.release.xcconfig"; path = "Target Support Files/Pods-Mall/Pods-Mall.release.xcconfig"; sourceTree = "<group>"; };
+		E722805F28056D7E0089345F /* MMActivityApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMActivityApi.swift; sourceTree = "<group>"; };
 		E73134842803D4C600C725A1 /* MMHomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeMainView.swift; sourceTree = "<group>"; };
 		E73134862803DAB200C725A1 /* UIView+MMExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MMExtension.swift"; sourceTree = "<group>"; };
 		E73134882804077B00C725A1 /* MMHorizontalPageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHorizontalPageLayout.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				E76E421D27C62EF300BBC29A /* BaseApi.swift */,
 				E76E421F27C6379C00BBC29A /* CategoryApi.swift */,
 				E77E09372800092200B2220B /* HomeApi.swift */,
+				E722805F28056D7E0089345F /* MMActivityApi.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				E73134892804077B00C725A1 /* MMHorizontalPageLayout.swift in Sources */,
 				E798769D27F5A32900842169 /* MMCategoryListMainController.swift in Sources */,
 				E76E420A27C60C8D00BBC29A /* MMBaseNavigationController.swift in Sources */,
+				E722806028056D7E0089345F /* MMActivityApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

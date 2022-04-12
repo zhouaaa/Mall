@@ -9,7 +9,8 @@ import Foundation
 import Moya
 import RxSwift
 import SwiftyJSON
-
+import UIKit
+import YYKit
 
 struct BaseApiConfig {
     
@@ -51,6 +52,24 @@ struct BaseApiConfig {
             "Accept"             : "application/json"
         ]
     }
+    
+    /// 默认参数
+    static var defaultParameters: [String: String] {
+        let appKey = "6254fc0e7d23b"
+        let key = "f457890c7a40f38bdf52d05cbbe04861"
+        let timer = Double(Date().timeIntervalSince1970) * 1000
+        let nonce = randomCustom(min: 100000, max: 999999)
+        let signRan = "appKey=\(appKey)&timer=\(timer)&nonce=\(nonce)&key=\(key)"
+        let singRanMd5 = signRan.md5()
+        
+    return [
+        "appKey": "\(appKey)",
+        "version": "v3.0.0",
+        "timer": "\(timer)",
+        "nonce": "\(nonce)",
+        "signRan": "\(singRanMd5 ?? "")"]
+    }
+    
 }
 
 

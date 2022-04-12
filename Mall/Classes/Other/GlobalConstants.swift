@@ -42,6 +42,11 @@ public var kGlobalDevice : String {
     }
 }
 
+// MARK: 随机数生成
+func randomCustom(min: Int, max: Int) -> Int {
+    return Int(arc4random()) % (max - min + 1) + min
+}
+
 public var kGlobalDefultImage : UIImage {
     get{
         return UIImage(named: "comm_place")!

@@ -50,7 +50,6 @@ class MMHomeMainController: UIViewController {
             var menu = [MMHomeIconBannerModel]()
             menu.append(contentsOf: result?.icons ?? [MMHomeIconBannerModel]())
             menu.append(contentsOf: result?.small_icons ?? [MMHomeIconBannerModel]())
-            menu.append(contentsOf: result?.icons)
             self.headView.reloadMenuData(listData: menu)
         }, onError: { error in
             

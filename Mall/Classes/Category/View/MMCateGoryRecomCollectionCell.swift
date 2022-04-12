@@ -25,8 +25,10 @@ class MMCateGoryRecomCollectionCell: UICollectionViewCell {
             make.left.top.right.equalToSuperview()
             make.height.equalTo(self.goodImageV.snp.width).multipliedBy(1.0)
         }
+        
         self.contentView.addSubview(titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.goodImageV.snp.bottom)
             make.left.equalTo(self.goodImageV.snp.left).offset(4)
             make.right.equalTo(self.goodImageV.snp.right).offset(-4)
         }
