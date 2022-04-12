@@ -1,0 +1,86 @@
+PODS:
+  - Alamofire (5.5.0)
+  - DZNEmptyDataSet (1.8.1)
+  - ESTabBarController-swift (2.8.0)
+  - HandyJSON (5.0.2)
+  - JXPagingView/Paging (2.1.2)
+  - JXSegmentedView (1.3.0)
+  - MJRefresh (3.7.5)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - Moya/RxSwift (15.0.0):
+    - Moya/Core
+    - RxSwift (~> 6.0)
+  - Pastel (0.6.0)
+  - RxSwift (6.5.0)
+  - SDCycleScrollView (1.82):
+    - SDWebImage (>= 5.0.0)
+  - SDWebImage (5.12.3):
+    - SDWebImage/Core (= 5.12.3)
+  - SDWebImage/Core (5.12.3)
+  - SnapKit (5.0.1)
+  - SwiftLint (0.47.0)
+  - SwiftyJSON (5.0.1)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+
+DEPENDENCIES:
+  - Alamofire
+  - DZNEmptyDataSet
+  - ESTabBarController-swift
+  - HandyJSON
+  - JXPagingView/Paging
+  - JXSegmentedView
+  - MJRefresh
+  - Moya
+  - Moya/RxSwift
+  - Pastel
+  - SDCycleScrollView
+  - SnapKit
+  - SwiftLint
+  - SwiftyJSON
+  - YYKit
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - DZNEmptyDataSet
+    - ESTabBarController-swift
+    - HandyJSON
+    - JXPagingView
+    - JXSegmentedView
+    - MJRefresh
+    - Moya
+    - Pastel
+    - RxSwift
+    - SDCycleScrollView
+    - SDWebImage
+    - SnapKit
+    - SwiftLint
+    - SwiftyJSON
+    - YYKit
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  ESTabBarController-swift: 05593a6ad64700b03c0eb60ff625916370aa4136
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
+  JXPagingView: 90924b364a2ff7e94db534fad1fa50925ff69ee4
+  JXSegmentedView: fec0d335355b6e019c494fe2e030bde8a36d2df6
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  Pastel: 814f081efbe2859c37e65ee44f396e6e5be88619
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
+  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+
+PODFILE CHECKSUM: 362478bbd6a3f257e85def94fdb93f04bad6f481
+
+COCOAPODS: 1.11.2
