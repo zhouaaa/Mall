@@ -107,7 +107,9 @@ extension MMCateGoryTBDetailController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let bannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MMCategoryBannerCollectionCell", for: indexPath) as! MMCategoryBannerCollectionCell
-            
+            if self.currentGoodModel?.imgs?.count ?? 0 > 0 {
+                bannerCell.reloadTbDetailBannerData(list: self.currentGoodModel?.imgs ?? "")
+            }
             return bannerCell
         }
         else
@@ -124,7 +126,7 @@ extension MMCateGoryTBDetailController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
-            return CGSize(width: collectionView.width, height: collectionView.width*0.65)
+            return CGSize(width: collectionView.width, height: collectionView.width)
         default:
             return CGSize(width: (collectionView.width - 18)*0.5, height: (collectionView.width - 18)*0.75)
         }

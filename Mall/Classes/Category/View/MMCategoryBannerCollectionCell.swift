@@ -26,8 +26,13 @@ class MMCategoryBannerCollectionCell: UICollectionViewCell {
         self.bannerView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        
-        
+    }
+    
+    func reloadTbDetailBannerData(list:String) {
+        let lists = list.components(separatedBy: ",")
+        if lists.count > 0 {
+            self.bannerView.imageURLStringsGroup = lists
+        }
     }
     
     private lazy var bannerView: SDCycleScrollView = {

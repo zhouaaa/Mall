@@ -15,7 +15,14 @@ let kHomeApiProvider: MoyaProvider<HomeApi> = MoyaProvider(endpointClosure: crea
 
 enum HomeApi {
     case HomeCmsV2Ads(siteId: String = "369616", temp_id: String = "2", page: Int = 1)
-    case HomelistTipOff
+    /**
+     * Class GetTipList 线报
+     * Integer topic  线报类型：1-超值买返2-天猫超市3-整点抢购4-最新线报-所有数据(默认)5-最新线报-天猫6-最新线报-京东7-最新线报-拼多多8-最新线报-淘宝
+     * Integer pageId 页码，默认为1
+     * Integer pageSize 每页记录数，默认20
+     * Integer selectTime rush-整点抢购时的时间戳（秒），示例：1617026400
+     */
+    case HomelistTipOff(topic: String = "", selectTime: String = "", pageId: Int = 1, pageSize: Int = 20)
     
     case HomeRankingList
 
@@ -60,14 +67,16 @@ extension HomeApi: BaseApi {
             parametDict["page"] = "\(page)"
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
             
-        case .HomelistTipOff:
-            var parametDict = [String: String]()
-            parametDict["version"] = "v1.2.4"
-            parametDict["appKey"] = "612bcfe884763"
-            parametDict["topic"] = "8"
-            parametDict["pageId"] = "1"
-            parametDict["pageSize"] = "8"
-            parametDict["sign"] = "123642fbcba032260bed6ff5586ce18a"
+        case .HomelistTipOff(let topic, let selectTime, let pageId, let pageSize):
+            var parametDict = BaseApiConfig.defaultParameters
+            parametDict["pageId"] = "\(pageId)"
+            parametDict["pageSize"] = "\(pageSize)"
+            if topic.isNotBlank() {
+                parametDict["topic"] = topic
+            }
+            if selectTime.isNotBlank() {
+                parametDict["selectTime"] = selectTime
+            }
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
             
         case .HomeRankingList:

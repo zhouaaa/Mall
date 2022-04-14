@@ -23,7 +23,7 @@ class MMCategoryMainController: UIViewController {
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
             make.left.top.bottom.equalToSuperview()
-            make.width.equalTo(view.snp.width).multipliedBy(0.32)
+            make.width.equalTo(view.snp.width).multipliedBy(0.2)
         }
     
         self.view.addSubview(self.collectionView)
@@ -66,15 +66,17 @@ class MMCategoryMainController: UIViewController {
        _tab.backgroundColor = UIColor.white
        _tab.showsHorizontalScrollIndicator = false
        _tab.showsVerticalScrollIndicator = false
+       _tab.separatorColor = UIColor.clear
         return _tab
     }()
     
     private lazy var flowlayout: UICollectionViewFlowLayout = {
         let flowlayout = UICollectionViewFlowLayout()
         flowlayout.scrollDirection = .vertical
-        flowlayout.minimumLineSpacing = 4
-        flowlayout.minimumInteritemSpacing = 6
+        flowlayout.minimumLineSpacing = 5
+        flowlayout.minimumInteritemSpacing = 0
         flowlayout.sectionHeadersPinToVisibleBounds = true
+        flowlayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return flowlayout
     }()
     
@@ -177,7 +179,7 @@ extension MMCategoryMainController: UICollectionViewDelegateFlowLayout, UICollec
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.width - 24)/3, height: (collectionView.width - 24)/3 + 30)
+        return CGSize(width: (collectionView.width - 60)*0.33, height: (collectionView.width - 60)*0.33 + 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

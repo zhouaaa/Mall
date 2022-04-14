@@ -87,6 +87,21 @@ enum MMActivityApi {
      * Class GetCarouseList 轮播图
      */
     case GetCarouseList
+    /**
+     * Class GetDdqGoodsList 咚咚抢
+     * String roundTime required 默认为当前场次，场次时间输入方式：yyyy-mm-dd hh:mm:ss
+     */
+    case GetDdqGoodsList
+    /**
+     * Class GetExplosiveGoodsList 每日爆品推荐
+     * Integer pageId required 分页id
+     * Integer pageSize required 每页返回条数，每页条数支持输入10,20，50,100。默认50条
+     * String PriceCid 价格区间，1表示10~20元区；2表示20~40元区；3表示40元以上区；默认为1
+     * String cids 大淘客的一级分类id，如果需要传多个，以英文逗号相隔，如：”1,2,3”。1 -女装，2 -母婴，3 -美妆，4 -居家日用，5 -鞋品，6 -美食，7 -文娱车品，
+     *      8 -数码家电，9 -男装，10 -内衣，11 -箱包，12 -配饰，13 -户外运动，14 -家装家纺。不填默认全部
+     */
+    case GetExplosiveGoodsList(cids: String = "", PriceCid: Int = 1, pageId: Int = 1, pageSize: Int = 20)
+    
     
 }
 
@@ -118,7 +133,10 @@ extension MMActivityApi: BaseApi {
             
         case .GetCarouseList:
             return "api/goods/topic/carouse-list"
-            
+        case .GetDdqGoodsList:
+            return "api/category/ddq-goods-list"
+        case .GetExplosiveGoodsList:
+            return "api/goods/explosive-goods-list"
         }
     }
     
@@ -194,7 +212,19 @@ extension MMActivityApi: BaseApi {
         case .GetCarouseList:
             let parametDict = BaseApiConfig.defaultParameters
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
-            
+        case .GetDdqGoodsList:
+            var parametDict = BaseApiConfig.defaultParameters
+            parametDict["roundTime"] = "\(Date.getCurrentDateTimeStr())"
+            return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
+        case .GetExplosiveGoodsList(let cids, let PriceCid, let pageId, let pageSize):
+            var parametDict = BaseApiConfig.defaultParameters
+            parametDict["pageId"] = "\(pageId)"
+            parametDict["pageSize"] = "\(pageSize)"
+            parametDict["PriceCid"] = "\(PriceCid)"
+            if cids.isNotBlank() {
+                parametDict["cids"] = "\(cids)"
+            }
+            return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
         }
     }
     

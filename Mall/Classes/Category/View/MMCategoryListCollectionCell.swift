@@ -21,6 +21,8 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
     
     private func markUI() {
         
+        self.backgroundColor = UIColor.hexColor(0xffffff)
+        
         self.contentView.addSubview(self.goodImageV)
         self.goodImageV.snp.makeConstraints { (make) in
             make.left.equalTo(self.snp.left).offset(12)
@@ -52,6 +54,12 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
         self.priceLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.titleLabel.snp.left)
             make.bottom.equalTo(self.shopNameLabel.snp.top).offset(-6)
+        }
+        
+        self.contentView.addSubview(self.lineView)
+        self.lineView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalTo(1)
         }
         
     }
@@ -104,13 +112,14 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
         attributedPriceText.addAttributes([.font: UIFont.boldSystemFont(ofSize: 12), .foregroundColor: UIColor.hexColor(0x999999)], range: nsString.range(of: "折后价 ¥:"))
         self.priceLabel.attributedText = attributedPriceText
         
-        self.shopNameLabel.text = "  \(cellData.shopName ?? "")  "        
+        self.shopNameLabel.text = "   \(cellData.shopName ?? "")   "
         
     }
     
     private lazy var goodImageV: UIImageView = {
         let _v = UIImageView()
-        _v.contentMode = .scaleAspectFit
+        _v.contentMode = .scaleAspectFill
+        _v.layer(radius: 6, borderWidth: 0.0, borderColor: UIColor.white)
         return _v
     }()
     
@@ -128,16 +137,17 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
     
     lazy var shopNameLabel: UILabel = {
         let _lab = UILabel()
-        _lab.backgroundColor = UIColor.hexColor(0xF8F8FA)
-        _lab.font = UIFont.systemFont(ofSize: 12)
-        _lab.textColor = UIColor.hexColor(666666)
+        _lab.backgroundColor = UIColor.hexColor(0xF5F7F9)
+        _lab.font = UIFont.df_getCustomFontType(with: .Semibold, fontSize: 10)
+        _lab.textColor = UIColor.hexColor(0x333333)
+        _lab.layer(radius: 4, borderWidth: 0.0, borderColor: UIColor.hexColor(0xF5F7F9))
         return _lab
     }()
     
     private lazy var sallLabel: UILabel = {
         let _lab = UILabel()
         _lab.textAlignment = .right
-        _lab.font = UIFont.systemFont(ofSize: 12)
+        _lab.font = UIFont.df_getCustomFontType(with: .Medium, fontSize: 12)
         _lab.textColor = UIColor.hexColor(0x666666)
         return _lab
     }()
@@ -145,9 +155,14 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
     private lazy var priceLabel: UILabel = {
         let _lab = UILabel()
         _lab.textColor = UIColor.hexColor(0xf21724)
-        _lab.font = UIFont.boldSystemFont(ofSize: 17)
+        _lab.font = UIFont.df_getCustomFontType(with: .Semibold, fontSize: 17)
         _lab.textAlignment = .left
         return _lab
     }()
     
+    private lazy var lineView: UIView = {
+        let _v = UIView()
+        _v.backgroundColor = UIColor.hexColor(0xF1F1F1)
+        return _v
+    }()
 }

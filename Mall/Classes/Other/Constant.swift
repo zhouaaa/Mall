@@ -39,7 +39,7 @@ var isIPhoneX: Bool {
 let kSystemVersion = UIDevice.current.systemVersion
 
 //系统版本
-let IOS9  = (Double(kSystemVersion)! >= 9.0)
+let IOS9  = (Double(kSystemVersion) ?? 9.0 >= 9.0)
 
 
 public var kStatusBarHeight: CGFloat {

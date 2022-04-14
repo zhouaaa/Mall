@@ -31,8 +31,8 @@ class MMCategorieCollectionCell: UICollectionViewCell {
         
         self.contentView.addSubview(self.goodImageV)
         self.goodImageV.snp.makeConstraints { (make) in
-            make.top.equalTo(contentView.snp.top).offset(4)
-            make.bottom.equalTo(nameLabel.snp.top).offset(-4)
+            make.top.equalTo(contentView.snp.top).offset(6)
+            make.bottom.equalTo(nameLabel.snp.top).offset(-6)
             make.centerX.equalTo(contentView.snp.centerX)
             make.width.equalTo(goodImageV.snp.height).multipliedBy(1.0)
         }
@@ -55,7 +55,7 @@ class MMCategorieCollectionCell: UICollectionViewCell {
         let _lab = UILabel()
         _lab.textColor = UIColor.hexColor(0x333333)
         _lab.textAlignment = .center
-        _lab.font = UIFont.systemFont(ofSize: 14)
+        _lab.font = UIFont.df_getCustomFontType(with: .Medium, fontSize: 12)
         return _lab
     }()
 }
@@ -86,7 +86,7 @@ class MMCategorieReusableView: UICollectionReusableView {
         let _lab = UILabel()
         _lab.textColor = UIColor.hexColor(0xf21724)
         _lab.textAlignment = .center
-        _lab.font = UIFont.systemFont(ofSize: 16)
+        _lab.font = UIFont.df_getCustomFontType(with: .Regular, fontSize: 14)
         return _lab
     }()
 }

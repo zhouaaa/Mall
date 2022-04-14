@@ -142,11 +142,23 @@ class MMCategoryPublicGoodModel: HandyJSONModel {
     var discount: Int?
     
     ///   ==== 淘宝 ===   ///
+    
     var id: String?
     
     var goodsId: String?
     
     var dtitle: String?
+    
+    /// 详情轮播图
+    var imgs: String?
+   /// 淘宝详情图
+    var detailPics: [MMCategoryGoodDetailPicsModel]?
+    
+//    var _detailPics: [MMCategoryGoodDetailPicsModel]? {
+//        let lists = detailPics?.components(separatedBy: ",")
+//        return [MMCategoryGoodDetailPicsModel].deserialize(from: lists)
+//    }
+    
     
     /// 原价
     var originalPrice: Double?
@@ -295,3 +307,16 @@ class MMCategoryGoodJDCouponListModel: HandyJSONModel {
     var isInputCoupon: Bool?
 }
 
+
+//// 淘宝详情模型
+class MMCategoryGoodDetailPicsModel: HandyJSONModel {
+   
+    var hotAreaList: [AnyObject]?
+    
+    var img: String?
+    
+    var width: CGFloat?
+    
+    var height: CGFloat?
+    
+}

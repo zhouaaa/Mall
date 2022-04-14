@@ -84,7 +84,7 @@ class MMHomeMenusView: UIView {
                     layout.rowCount = 2
                     layout.minimumLineSpacing = 0
                     layout.minimumInteritemSpacing = 0
-                    layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+                    layout.itemSize = CGSize(width: itemWidth, height: itemHeight - 5)
                     layout.scrollDirection = .horizontal
         let _v = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         _v.backgroundColor = UIColor.clear
