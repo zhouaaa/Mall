@@ -13,6 +13,10 @@
 		E73134872803DAB200C725A1 /* UIView+MMExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73134862803DAB200C725A1 /* UIView+MMExtension.swift */; };
 		E73134892804077B00C725A1 /* MMHorizontalPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73134882804077B00C725A1 /* MMHorizontalPageLayout.swift */; };
 		E731348B2804093C00C725A1 /* MMHomeMenusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E731348A2804093C00C725A1 /* MMHomeMenusView.swift */; };
+		E7333C3D2811669B0031558F /* NineApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7333C3C2811669B0031558F /* NineApi.swift */; };
+		E7333C41281168E10031558F /* MMNineCateItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7333C40281168E10031558F /* MMNineCateItemModel.swift */; };
+		E7333C4328116CAB0031558F /* MMNineRecomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7333C4228116CAB0031558F /* MMNineRecomController.swift */; };
+		E7333C4528116CBB0031558F /* MMNinePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7333C4428116CBB0031558F /* MMNinePageController.swift */; };
 		E749A52227CF29F900AF0A17 /* MMHomePageCollectionGoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E749A52127CF29F900AF0A17 /* MMHomePageCollectionGoodCell.swift */; };
 		E754685427F820DA005669DB /* MMCateGoryTBDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E754685327F820DA005669DB /* MMCateGoryTBDetailController.swift */; };
 		E754685627F825EF005669DB /* MMCateGoryRecomCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E754685527F825EF005669DB /* MMCateGoryRecomCollectionCell.swift */; };
@@ -61,6 +65,10 @@
 		E73134862803DAB200C725A1 /* UIView+MMExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MMExtension.swift"; sourceTree = "<group>"; };
 		E73134882804077B00C725A1 /* MMHorizontalPageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHorizontalPageLayout.swift; sourceTree = "<group>"; };
 		E731348A2804093C00C725A1 /* MMHomeMenusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeMenusView.swift; sourceTree = "<group>"; };
+		E7333C3C2811669B0031558F /* NineApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NineApi.swift; sourceTree = "<group>"; };
+		E7333C40281168E10031558F /* MMNineCateItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMNineCateItemModel.swift; sourceTree = "<group>"; };
+		E7333C4228116CAB0031558F /* MMNineRecomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMNineRecomController.swift; sourceTree = "<group>"; };
+		E7333C4428116CBB0031558F /* MMNinePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMNinePageController.swift; sourceTree = "<group>"; };
 		E749A52127CF29F900AF0A17 /* MMHomePageCollectionGoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomePageCollectionGoodCell.swift; sourceTree = "<group>"; };
 		E754685327F820DA005669DB /* MMCateGoryTBDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMCateGoryTBDetailController.swift; sourceTree = "<group>"; };
 		E754685527F825EF005669DB /* MMCateGoryRecomCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMCateGoryRecomCollectionCell.swift; sourceTree = "<group>"; };
@@ -141,6 +149,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		E7333C3E281168AF0031558F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E7333C3F281168AF0031558F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E7333C40281168E10031558F /* MMNineCateItemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E748FC6727BC90940082E488 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +216,11 @@
 		E748FC6B27BC90940082E488 /* 9.9 */ = {
 			isa = PBXGroup;
 			children = (
+				E7333C3F281168AF0031558F /* Model */,
+				E7333C3E281168AF0031558F /* View */,
 				E76E420B27C6132800BBC29A /* MMNineMainController.swift */,
+				E7333C4228116CAB0031558F /* MMNineRecomController.swift */,
+				E7333C4428116CBB0031558F /* MMNinePageController.swift */,
 			);
 			path = 9.9;
 			sourceTree = "<group>";
@@ -278,6 +305,7 @@
 				E76E421F27C6379C00BBC29A /* CategoryApi.swift */,
 				E77E09372800092200B2220B /* HomeApi.swift */,
 				E722805F28056D7E0089345F /* MMActivityApi.swift */,
+				E7333C3C2811669B0031558F /* NineApi.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -448,7 +476,9 @@
 				E7AB43582807F53100D4CE21 /* Date+MMExtension.swift in Sources */,
 				E76E420827C6076700BBC29A /* MMPreferentMainController.swift in Sources */,
 				E7ABA1CE27F70ED7008D671C /* UIScrollView+MMRefresh.swift in Sources */,
+				E7333C4528116CBB0031558F /* MMNinePageController.swift in Sources */,
 				E76E420227C6073200BBC29A /* MMHomeMainController.swift in Sources */,
+				E7333C3D2811669B0031558F /* NineApi.swift in Sources */,
 				E731348B2804093C00C725A1 /* MMHomeMenusView.swift in Sources */,
 				E76E421627C618D900BBC29A /* AppDelegate.swift in Sources */,
 				E76E420427C6074100BBC29A /* MMCategoryMainController.swift in Sources */,
@@ -472,6 +502,7 @@
 				E76E421227C6165500BBC29A /* UIColor+MMExtension.swift in Sources */,
 				E7AE280627CDCD94000368C1 /* MMBasicContentView.swift in Sources */,
 				E76E420027C6070500BBC29A /* MMMainTabBarController.swift in Sources */,
+				E7333C4328116CAB0031558F /* MMNineRecomController.swift in Sources */,
 				E79876A627F5B70800842169 /* MMCategoryListCollectionCell.swift in Sources */,
 				E749A52227CF29F900AF0A17 /* MMHomePageCollectionGoodCell.swift in Sources */,
 				E7AB435E280820C200D4CE21 /* MMPreferentMainListModel.swift in Sources */,
@@ -480,6 +511,7 @@
 				E73134852803D4C600C725A1 /* MMHomeMainView.swift in Sources */,
 				E73134892804077B00C725A1 /* MMHorizontalPageLayout.swift in Sources */,
 				E798769D27F5A32900842169 /* MMCategoryListMainController.swift in Sources */,
+				E7333C41281168E10031558F /* MMNineCateItemModel.swift in Sources */,
 				E76E420A27C60C8D00BBC29A /* MMBaseNavigationController.swift in Sources */,
 				E722806028056D7E0089345F /* MMActivityApi.swift in Sources */,
 			);
@@ -623,7 +655,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 24AYJ38ZC5;
+				DEVELOPMENT_TEAM = 89ZCQQ3S27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mall/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -652,7 +684,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 24AYJ38ZC5;
+				DEVELOPMENT_TEAM = 89ZCQQ3S27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mall/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

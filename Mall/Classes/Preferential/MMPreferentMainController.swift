@@ -53,6 +53,7 @@ class MMPreferentMainController: UIViewController {
         
         _ = kHomeApiProvider.yn_request(.HomelistTipOff(pageId: self.currentPage)).subscribe(onNext: { [weak self] (json) in
             self?.tableView.endRefreshing()
+            NSLog(json)
             guard let _result = MMPreferentMainListModel.deserialize(from: json) else { return }
             self?.listDatas.append(contentsOf: _result.list ?? [MMPreferentMainModel]())
             self?.tableView.reloadData()
@@ -68,12 +69,18 @@ class MMPreferentMainController: UIViewController {
     
     
    private lazy var tableView: UITableView = {
-        let _tab = UITableView(frame: CGRect.zero, style: .grouped)
-        _tab.separatorColor = UIColor.clear
+        let _tab = UITableView(frame: .zero, style: .grouped)
         _tab.backgroundColor = UIColor.clear
         _tab.delegate = self
         _tab.dataSource = self
         _tab.register(MMPreferentMainTableCell.self, forCellReuseIdentifier: "MMPreferentMainTableCell")
+        _tab.estimatedRowHeight = 120
+        _tab.rowHeight = UITableView.automaticDimension
+        _tab.showsVerticalScrollIndicator = false
+        _tab.showsHorizontalScrollIndicator = false
+        _tab.separatorStyle = .none
+        _tab.tableHeaderView = UIView()
+        _tab.tableFooterView = UIView()
         return _tab
     }()
     
@@ -92,13 +99,15 @@ extension MMPreferentMainController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MMPreferentMainTableCell", for: indexPath) as! MMPreferentMainTableCell
-        
+        if self.listDatas.count > indexPath.row {
+            cell.item = self.listDatas[indexPath.row]
+        }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

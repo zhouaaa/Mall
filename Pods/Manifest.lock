@@ -13,8 +13,12 @@ PODS:
   - Moya/RxSwift (15.0.0):
     - Moya/Core
     - RxSwift (~> 6.0)
+  - "NSObject+Rx (5.2.2)":
+    - RxSwift (~> 6.2)
   - Pastel (0.6.0)
   - RxSwift (6.5.0)
+  - RxSwiftExt/Core (6.0.1):
+    - RxSwift (~> 6.0)
   - SDCycleScrollView (1.82):
     - SDWebImage (>= 5.0.0)
   - SDWebImage (5.12.3):
@@ -37,7 +41,10 @@ DEPENDENCIES:
   - MJRefresh
   - Moya
   - Moya/RxSwift
+  - "NSObject+Rx"
   - Pastel
+  - RxSwift
+  - RxSwiftExt/Core
   - SDCycleScrollView
   - SnapKit
   - SwiftLint
@@ -54,8 +61,10 @@ SPEC REPOS:
     - JXSegmentedView
     - MJRefresh
     - Moya
+    - "NSObject+Rx"
     - Pastel
     - RxSwift
+    - RxSwiftExt
     - SDCycleScrollView
     - SDWebImage
     - SnapKit
@@ -72,8 +81,10 @@ SPEC CHECKSUMS:
   JXSegmentedView: fec0d335355b6e019c494fe2e030bde8a36d2df6
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   Pastel: 814f081efbe2859c37e65ee44f396e6e5be88619
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  RxSwiftExt: d61c4b9b06e0a448041b1c659e0f1b5c5a035afc
   SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
@@ -81,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 362478bbd6a3f257e85def94fdb93f04bad6f481
+PODFILE CHECKSUM: 1a9e049ad50b7e7f9b066ffca1e0a2f87ec6511e
 
 COCOAPODS: 1.11.2

@@ -30,6 +30,11 @@ struct BaseApiConfig {
         return "cmscg.dataoke.com"
     }
     
+    static var hostV4: String {
+        return "dtkapi.ffquan.cn"
+    }
+
+    
     
     
     
@@ -64,7 +69,7 @@ struct BaseApiConfig {
         
     return [
         "appKey": "\(appKey)",
-        "version": "v3.0.0",
+        "version": "v4.0.0",
         "timer": "\(timer)",
         "nonce": "\(nonce)",
         "signRan": "\(singRanMd5 ?? "")"]

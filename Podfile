@@ -14,6 +14,10 @@ target 'Mall' do
   pod 'HandyJSON'
   pod 'SwiftyJSON'
   pod "ESTabBarController-swift"
+  pod 'RxSwift'
+  pod 'RxSwiftExt/Core'
+  pod 'NSObject+Rx'
+  
   #pod 'WRNavigationBar'
   #渐变背景
   pod "Pastel"
@@ -25,6 +29,8 @@ target 'Mall' do
   pod 'DZNEmptyDataSet'
   pod 'JXSegmentedView'
   pod 'JXPagingView/Paging'
+  #图片浏览器
+  #pod 'SKPhotoBrowser'
   #格式化
   pod 'SwiftLint'
   pod 'YYKit'

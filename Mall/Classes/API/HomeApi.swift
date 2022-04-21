@@ -17,12 +17,13 @@ enum HomeApi {
     case HomeCmsV2Ads(siteId: String = "369616", temp_id: String = "2", page: Int = 1)
     /**
      * Class GetTipList 线报
-     * Integer topic  线报类型：1-超值买返2-天猫超市3-整点抢购4-最新线报-所有数据(默认)5-最新线报-天猫6-最新线报-京东7-最新线报-拼多多8-最新线报-淘宝
+     * Integer topic  线报类型：1淘宝商品 2天猫商品 3猫超商品 4店铺 5会场 6优惠券 7京东商品
+     * Integer type 1淘宝好价，2天猫超市，3京东好价
      * Integer pageId 页码，默认为1
      * Integer pageSize 每页记录数，默认20
      * Integer selectTime rush-整点抢购时的时间戳（秒），示例：1617026400
      */
-    case HomelistTipOff(topic: String = "", selectTime: String = "", pageId: Int = 1, pageSize: Int = 20)
+    case HomelistTipOff(topic: String = "", type: String = "" ,selectTime: String = "", pageId: Int = 1, pageSize: Int = 20)
     
     case HomeRankingList
 
@@ -67,13 +68,18 @@ extension HomeApi: BaseApi {
             parametDict["page"] = "\(page)"
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
             
-        case .HomelistTipOff(let topic, let selectTime, let pageId, let pageSize):
+        case .HomelistTipOff(let topic, let type, let selectTime, let pageId, let pageSize):
             var parametDict = BaseApiConfig.defaultParameters
             parametDict["pageId"] = "\(pageId)"
             parametDict["pageSize"] = "\(pageSize)"
             if topic.isNotBlank() {
                 parametDict["topic"] = topic
             }
+            
+            if type.isNotBlank() {
+                parametDict["type"] = type
+            }
+            
             if selectTime.isNotBlank() {
                 parametDict["selectTime"] = selectTime
             }
