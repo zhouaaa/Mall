@@ -9,7 +9,7 @@ import UIKit
 import JXPagingView
 
 
-class MMHomePageController: UIViewController {
+class MMHomePageController: MMBaseViewController {
     
     private var listViewDidScrollCallback: ((UIScrollView) -> ())?
     
@@ -19,8 +19,16 @@ class MMHomePageController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func setupUI() {
+        
+    }
+    
+    override func bind() {
+        
+    }
+    
 
-   private lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let _flowLayout = UICollectionViewFlowLayout()
         let _v = UICollectionView(frame: CGRect.zero, collectionViewLayout: _flowLayout)
         _v.delegate = self

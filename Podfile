@@ -17,8 +17,7 @@ target 'Mall' do
   pod 'RxSwift'
   pod 'RxSwiftExt/Core'
   pod 'NSObject+Rx'
-  
-  #pod 'WRNavigationBar'
+  pod 'R.swift'                      #文件
   #渐变背景
   pod "Pastel"
   #轮播图
@@ -29,8 +28,6 @@ target 'Mall' do
   pod 'DZNEmptyDataSet'
   pod 'JXSegmentedView'
   pod 'JXPagingView/Paging'
-  #图片浏览器
-  #pod 'SKPhotoBrowser'
   #格式化
   pod 'SwiftLint'
   pod 'YYKit'

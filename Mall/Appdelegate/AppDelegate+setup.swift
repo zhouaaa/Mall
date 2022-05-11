@@ -22,6 +22,14 @@ extension AppDelegate {
         
         self.window?.makeKeyAndVisible()
         
+        let navigationBar = UINavigationBar.appearance()
+        navigationBar.barTintColor = UIColor.white
+        navigationBar.tintColor = UIColor.hexColor(0x333333)
+        navigationBar.barStyle = .default
+        navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.hexColor(0x333333),
+            NSAttributedString.Key.font: UIFont.df_getCustomFontType(with: .Regular, fontSize: 18) ?? UIFont.systemFont(ofSize: 18)]
+        
     }
     
     

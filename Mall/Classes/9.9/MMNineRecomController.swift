@@ -9,7 +9,7 @@ import UIKit
 import JXSegmentedView
 import YYKit
 
-class MMNineRecomController: UIViewController {
+class MMNineRecomController: MMBaseViewController {
 
     convenience init(itemModel: MMNineCateItemModel) {
         self.init(nibName: nil, bundle: nil)
@@ -20,12 +20,11 @@ class MMNineRecomController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.setupUI()
-        self.bindUI()
+        
     }
     
     
-    private func setupUI() {
+    override func setupUI() {
         
         if ((self.currItemModel.id?.isNotBlank()) != nil)  {
             _ = kNineApiProvider.yn_request(.NinePageGoods(cid: self.currItemModel.id ?? "", pageNo: self.currentPage)).subscribe(onNext: { (json) in
@@ -37,8 +36,8 @@ class MMNineRecomController: UIViewController {
         
     }
 
-    private func bindUI() {
-        
+    override func bind() {
+            
     }
     
     

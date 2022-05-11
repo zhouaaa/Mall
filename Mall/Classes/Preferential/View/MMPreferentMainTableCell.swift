@@ -59,9 +59,9 @@ class MMPreferentMainTableCell: UITableViewCell {
         
         self.contentView.addSubview(self.contentLabel)
         self.contentLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.headImagV.snp.left)
             make.top.equalTo(self.headImagV.snp.bottom).offset(8)
-            make.width.equalTo(kScreenWidth*0.4)
+            make.left.equalTo(self.headImagV.snp.left)
+            make.right.equalTo(self.contentView.snp.right).offset(-12)
         }
         
         self.contentView.addSubview(self.goodImageV)

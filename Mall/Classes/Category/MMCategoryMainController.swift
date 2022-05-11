@@ -7,19 +7,17 @@
 
 import UIKit
 
-class MMCategoryMainController: UIViewController {
+class MMCategoryMainController: MMBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        self.setupUI()
-        self.bind()
+    
     }
 
-    private func setupUI() {
-    
+    override func setupUI() {
+
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
             make.left.top.bottom.equalToSuperview()
@@ -34,9 +32,8 @@ class MMCategoryMainController: UIViewController {
         }
     }
     
-    
-   private func bind() {
-       
+    override func bind() {
+
        _ = kCategoryApiProvider.yn_request(.superCategory).subscribe(onNext: { (json) in
            let result = json.arrayValue.compactMap({MMCategoryListModel.deserialize(from: $0)})
            self.lists = result

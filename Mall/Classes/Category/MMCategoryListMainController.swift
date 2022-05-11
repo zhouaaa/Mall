@@ -9,22 +9,32 @@ import UIKit
 import JXPagingView
 import JXSegmentedView
 
-class MMCategoryListMainController: UIViewController {
+class MMCategoryListMainController: MMBaseViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.hx_enablePopGesture = (self.segmentView.selectedIndex == 0)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.hx_enablePopGesture = true
+    }
+    
     convenience init(listKeyWordModel: MMCategorySubcategoriesModel) {
         self.init(nibName: nil, bundle: nil)
         self.listkeyModel = listKeyWordModel
-        self.setupView()
-        self.bind()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
-    private func setupView() {
+    override func setupUI() {
         
         self.navigationItem.title = self.listkeyModel.subcname
         
@@ -44,8 +54,8 @@ class MMCategoryListMainController: UIViewController {
         
     }
     
-    private func bind() {
-        
+    override func bind() {
+
     }
 
     private var listkeyModel = MMCategorySubcategoriesModel()
@@ -103,24 +113,12 @@ extension MMCategoryListMainController: JXSegmentedListContainerViewDataSource, 
     }
     
     func listContainerView(_ listContainerView: JXSegmentedListContainerView, initListAt index: Int) -> JXSegmentedListContainerViewListDelegate {
-        
         return MMCategoryListController(KeyWordModel: self.listkeyModel, sourceType: index)
     }
     
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        
-    }
-    
-    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
-        
-    }
-    
-    func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int) {
-        
-    }
-    
-    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {
-        
+        self.listContainerView.didClickSelectedItem(at: index)
+        self.navigationController?.hx_enablePopGesture = (segmentedView.selectedIndex == 0)
     }
     
     func segmentedView(_ segmentedView: JXSegmentedView, canClickItemAt index: Int) -> Bool {

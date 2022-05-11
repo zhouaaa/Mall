@@ -9,21 +9,19 @@ import UIKit
 import JXPagingView
 import JXSegmentedView
 
-class MMHomeMainController: UIViewController {
+class MMHomeMainController: MMBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        self.setupUI()
-        
-        self.bind()
+
         
     }
     
     
-    private func setupUI() {
+    override func setupUI() {
         
         self.view.addSubview(self.listPageView)
         self.listPageView.snp.makeConstraints { (make) in
@@ -31,9 +29,8 @@ class MMHomeMainController: UIViewController {
         }
         self.segmentedView.contentScrollView = self.listPageView.listContainerView.scrollView
     }
-    
-    private func bind() {
-        
+    override func bind() {
+
         _ = kCategoryApiProvider.yn_request(.superCategory).subscribe(onNext: { (json) in
             let result = json.arrayValue.compactMap({MMCategoryListModel.deserialize(from: $0)})
             self.tabbarItems = result

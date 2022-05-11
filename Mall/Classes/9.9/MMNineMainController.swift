@@ -8,18 +8,17 @@
 import UIKit
 import JXSegmentedView
 
-class MMNineMainController: UIViewController {
+class MMNineMainController: MMBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.setupUI()
-        self.bind()
+        
     }
     
-    private func setupUI() {
-        
+    override func setupUI() {
+
         self.navigationItem.titleView = self.segmentedView
      
         self.view.addSubview(self.listContainerView)
@@ -29,7 +28,8 @@ class MMNineMainController: UIViewController {
         
     }
     
-    private func bind() {
+    override func bind() {
+        
         _ = kNineApiProvider.yn_request(.NinePageCate).subscribe(onNext: { (json) in
             let result = json.arrayValue.compactMap({MMNineCateItemModel.deserialize(from: $0)})
             self.nineCateLists = result
@@ -106,23 +106,9 @@ extension MMNineMainController: JXSegmentedListContainerViewDataSource, JXSegmen
     }
     
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        
+        self.listContainerView.didClickSelectedItem(at: index)
     }
     
-    func segmentedView(_ segmentedView: JXSegmentedView, didClickSelectedItemAt index: Int) {
-        
-    }
-    
-    func segmentedView(_ segmentedView: JXSegmentedView, didScrollSelectedItemAt index: Int) {
-        
-    }
-    
-    func segmentedView(_ segmentedView: JXSegmentedView, scrollingFrom leftIndex: Int, to rightIndex: Int, percent: CGFloat) {
-        
-    }
-    
-    func segmentedView(_ segmentedView: JXSegmentedView, canClickItemAt index: Int) -> Bool {
-        return true
-    }
+
     
 }

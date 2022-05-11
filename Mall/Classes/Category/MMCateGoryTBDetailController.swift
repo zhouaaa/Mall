@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MMCateGoryTBDetailController: UIViewController {
+class MMCateGoryTBDetailController: MMBaseViewController {
 
     convenience init(goodId: String) {
         self.init(nibName: nil, bundle: nil)
@@ -18,21 +18,25 @@ class MMCateGoryTBDetailController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setUpUI()
-        bind()
+        
+        self.edgesForExtendedLayout = .all
+        self.hx_barAlpha = 0
     }
     
 
-    private func setUpUI() {
+    override func setupUI() {
         
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         
+        
+        
     }
     
-    private func bind() {
+    override func bind() {
+
         /// 商品数据
         _ = kCategoryApiProvider.yn_request(.getTaoBaoGoodsDetails(goodsId: self.currentGoodId)).subscribe(onNext: { [weak self] (json) in
             self?.collectionView.endRefreshing()
@@ -77,6 +81,11 @@ class MMCateGoryTBDetailController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let _v = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowlayout)
+        if #available(iOS 11.0, *) {
+            _v.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
         _v.delegate = self
         _v.dataSource = self
         _v.backgroundColor = UIColor.white
@@ -132,5 +141,10 @@ extension MMCateGoryTBDetailController: UICollectionViewDelegate, UICollectionVi
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let ratio = scrollView.contentOffset.y / (kScreenWidth - kNavigationBarHeight)
+        let alpha = ratio < 0.0 ? 0.0 : (ratio >= 1.0 ? 1.0 : ratio)
+        self.hx_barAlpha = alpha
+    }
     
 }

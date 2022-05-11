@@ -9,17 +9,13 @@ import UIKit
 import JXSegmentedView
 
 
-class MMCategoryListController: UIViewController {
+class MMCategoryListController: MMBaseViewController {
 
     convenience init(KeyWordModel: MMCategorySubcategoriesModel, sourceType: Int) {
         self.init(nibName: nil, bundle: nil)
         
         self.currentPageType = sourceType
         self.cateGoryModel = KeyWordModel
-        
-        self.setupView()
-        
-        self.bind()
         
     }
     
@@ -29,8 +25,9 @@ class MMCategoryListController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    private func setupView() {
-        
+    
+    override func setupUI() {
+
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -40,8 +37,9 @@ class MMCategoryListController: UIViewController {
         
     }
     
-    private func bind() {
-        
+    
+    override func bind() {
+
         self.collectionView.MMHead = RefreshHeader{ [weak self] in
             guard self != nil else { return }
             self?.loadMoreGoodListData(isFirstRequest: true)

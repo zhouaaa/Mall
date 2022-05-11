@@ -106,13 +106,13 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
             priceString = "¥: \(cellData.price ?? 0.00)"
         }
          
-        let attributedPriceText = NSMutableAttributedString(string: priceString, attributes: [.font: UIFont.boldSystemFont(ofSize: 17), .foregroundColor: UIColor.hexColor(0xf21724)])
+        let attributedPriceText = NSMutableAttributedString(string: priceString, attributes: [.font: UIFont.df_getCustomFontType(with: .Medium, fontSize: 18)!, .foregroundColor: UIColor.hexColor(0xf21724)])
         let nsString = NSString(string: attributedPriceText.string)
         attributedPriceText.addAttributes([.font: UIFont.boldSystemFont(ofSize: 12), .foregroundColor: UIColor.hexColor(0x999999)], range: nsString.range(of: "¥:"))
         attributedPriceText.addAttributes([.font: UIFont.boldSystemFont(ofSize: 12), .foregroundColor: UIColor.hexColor(0x999999)], range: nsString.range(of: "折后价 ¥:"))
         self.priceLabel.attributedText = attributedPriceText
         
-        self.shopNameLabel.text = "   \(cellData.shopName ?? "")   "
+        self.shopNameLabel.text = "\(cellData.shopName ?? "")"
         
     }
     
@@ -135,11 +135,12 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
         return _lab
     }()
     
-    lazy var shopNameLabel: UILabel = {
-        let _lab = UILabel()
+    lazy var shopNameLabel: MMPaddingLabel = {
+        let _lab = MMPaddingLabel()
         _lab.backgroundColor = UIColor.hexColor(0xF5F7F9)
         _lab.font = UIFont.df_getCustomFontType(with: .Semibold, fontSize: 10)
         _lab.textColor = UIColor.hexColor(0x333333)
+        _lab.textInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
         _lab.layer(radius: 4, borderWidth: 0.0, borderColor: UIColor.hexColor(0xF5F7F9))
         return _lab
     }()

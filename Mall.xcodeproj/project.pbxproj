@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2D6B3C03F1032D5AF7B2BE13 /* Pods_Mall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48CA481DACA2926D5829FE92 /* Pods_Mall.framework */; };
+		E71F0A10282B9F6A004C5A55 /* UIViewController+HXNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71F0A0D282B9F6A004C5A55 /* UIViewController+HXNavigationBar.swift */; };
+		E71F0A11282B9F6B004C5A55 /* HXFakeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71F0A0E282B9F6A004C5A55 /* HXFakeNavigationBar.swift */; };
+		E71F0A12282B9F6B004C5A55 /* HXNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71F0A0F282B9F6A004C5A55 /* HXNavigationController.swift */; };
+		E71F0A14282BA2A7004C5A55 /* MMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71F0A13282BA2A7004C5A55 /* MMBaseViewController.swift */; };
+		E71F0A16282BC711004C5A55 /* MMPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71F0A15282BC711004C5A55 /* MMPaddingLabel.swift */; };
 		E722806028056D7E0089345F /* MMActivityApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722805F28056D7E0089345F /* MMActivityApi.swift */; };
 		E73134852803D4C600C725A1 /* MMHomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73134842803D4C600C725A1 /* MMHomeMainView.swift */; };
 		E73134872803DAB200C725A1 /* UIView+MMExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73134862803DAB200C725A1 /* UIView+MMExtension.swift */; };
@@ -60,6 +65,11 @@
 		48CA481DACA2926D5829FE92 /* Pods_Mall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E471830CE29B08A16C9D2C /* Pods-Mall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mall.debug.xcconfig"; path = "Target Support Files/Pods-Mall/Pods-Mall.debug.xcconfig"; sourceTree = "<group>"; };
 		C4BB2BF7B82CF065166BD2D0 /* Pods-Mall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mall.release.xcconfig"; path = "Target Support Files/Pods-Mall/Pods-Mall.release.xcconfig"; sourceTree = "<group>"; };
+		E71F0A0D282B9F6A004C5A55 /* UIViewController+HXNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+HXNavigationBar.swift"; sourceTree = "<group>"; };
+		E71F0A0E282B9F6A004C5A55 /* HXFakeNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HXFakeNavigationBar.swift; sourceTree = "<group>"; };
+		E71F0A0F282B9F6A004C5A55 /* HXNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HXNavigationController.swift; sourceTree = "<group>"; };
+		E71F0A13282BA2A7004C5A55 /* MMBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMBaseViewController.swift; sourceTree = "<group>"; };
+		E71F0A15282BC711004C5A55 /* MMPaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPaddingLabel.swift; sourceTree = "<group>"; };
 		E722805F28056D7E0089345F /* MMActivityApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMActivityApi.swift; sourceTree = "<group>"; };
 		E73134842803D4C600C725A1 /* MMHomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeMainView.swift; sourceTree = "<group>"; };
 		E73134862803DAB200C725A1 /* UIView+MMExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MMExtension.swift"; sourceTree = "<group>"; };
@@ -137,6 +147,16 @@
 				C4BB2BF7B82CF065166BD2D0 /* Pods-Mall.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E71F0A0C282B9F6A004C5A55 /* HXNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				E71F0A0D282B9F6A004C5A55 /* UIViewController+HXNavigationBar.swift */,
+				E71F0A0E282B9F6A004C5A55 /* HXFakeNavigationBar.swift */,
+				E71F0A0F282B9F6A004C5A55 /* HXNavigationController.swift */,
+			);
+			path = HXNavigationController;
 			sourceTree = "<group>";
 		};
 		E73134832803D4AB00C725A1 /* View */ = {
@@ -228,10 +248,12 @@
 		E748FC6C27BC90940082E488 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E71F0A0C282B9F6A004C5A55 /* HXNavigationController */,
 				E76E41FF27C6070500BBC29A /* MMMainTabBarController.swift */,
 				E76E420927C60C8D00BBC29A /* MMBaseNavigationController.swift */,
 				E7AE280527CDCD94000368C1 /* MMBasicContentView.swift */,
 				E7AE280727CDCDD2000368C1 /* MMBouncesContentView.swift */,
+				E71F0A13282BA2A7004C5A55 /* MMBaseViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -284,6 +306,7 @@
 				E7ABA1CD27F70ED7008D671C /* UIScrollView+MMRefresh.swift */,
 				E73134862803DAB200C725A1 /* UIView+MMExtension.swift */,
 				E7AB43572807F53100D4CE21 /* Date+MMExtension.swift */,
+				E71F0A15282BC711004C5A55 /* MMPaddingLabel.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -492,15 +515,19 @@
 				E73134872803DAB200C725A1 /* UIView+MMExtension.swift in Sources */,
 				E79876A327F5B6EA00842169 /* MMCategorieCollectionCell.swift in Sources */,
 				E7AE280C27CE11B1000368C1 /* MMHomePageController.swift in Sources */,
+				E71F0A16282BC711004C5A55 /* MMPaddingLabel.swift in Sources */,
 				E754685427F820DA005669DB /* MMCateGoryTBDetailController.swift in Sources */,
 				E76E421E27C62EF300BBC29A /* BaseApi.swift in Sources */,
 				E79876A427F5B6EA00842169 /* MMCategorieTableLeftCell.swift in Sources */,
+				E71F0A14282BA2A7004C5A55 /* MMBaseViewController.swift in Sources */,
 				E754685627F825EF005669DB /* MMCateGoryRecomCollectionCell.swift in Sources */,
 				E76E421B27C62D7500BBC29A /* GlobalConstants.swift in Sources */,
 				E76E421727C618D900BBC29A /* SceneDelegate.swift in Sources */,
+				E71F0A11282B9F6B004C5A55 /* HXFakeNavigationBar.swift in Sources */,
 				E76E422327C6426A00BBC29A /* MMCategoryListModel.swift in Sources */,
 				E76E421227C6165500BBC29A /* UIColor+MMExtension.swift in Sources */,
 				E7AE280627CDCD94000368C1 /* MMBasicContentView.swift in Sources */,
+				E71F0A10282B9F6A004C5A55 /* UIViewController+HXNavigationBar.swift in Sources */,
 				E76E420027C6070500BBC29A /* MMMainTabBarController.swift in Sources */,
 				E7333C4328116CAB0031558F /* MMNineRecomController.swift in Sources */,
 				E79876A627F5B70800842169 /* MMCategoryListCollectionCell.swift in Sources */,
@@ -509,6 +536,7 @@
 				E76E420C27C6132800BBC29A /* MMNineMainController.swift in Sources */,
 				E754685827F827D1005669DB /* MMCategoryBannerCollectionCell.swift in Sources */,
 				E73134852803D4C600C725A1 /* MMHomeMainView.swift in Sources */,
+				E71F0A12282B9F6B004C5A55 /* HXNavigationController.swift in Sources */,
 				E73134892804077B00C725A1 /* MMHorizontalPageLayout.swift in Sources */,
 				E798769D27F5A32900842169 /* MMCategoryListMainController.swift in Sources */,
 				E7333C41281168E10031558F /* MMNineCateItemModel.swift in Sources */,
@@ -682,6 +710,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 89ZCQQ3S27;
@@ -699,6 +728,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hongyuan.mall.Mall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

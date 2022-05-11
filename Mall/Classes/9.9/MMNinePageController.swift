@@ -8,7 +8,7 @@
 import UIKit
 import JXSegmentedView
 
-class MMNinePageController: UIViewController {
+class MMNinePageController: MMBaseViewController {
 
     convenience init(itemModel: MMNineCateItemModel) {
         self.init(nibName: nil, bundle: nil)
@@ -21,6 +21,14 @@ class MMNinePageController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    override func setupUI() {
+        
+    }
+    
+    override func bind() {
+        
+    }
 
     
     private var currItemModel = MMNineCateItemModel()

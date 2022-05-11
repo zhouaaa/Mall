@@ -7,29 +7,27 @@
 
 import UIKit
 
-class MMPreferentMainController: UIViewController {
+class MMPreferentMainController: MMBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        self.setUI()
-        self.bind()
-        
+
     }
     
 
-    private func setUI() {
-        self.view.backgroundColor = UIColor.hexColor(0xF6F6F6)
-        
+    override func setupUI() {
+
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
     }
     
-    private func bind() {
+    override func bind() {
+
         self.tableView.MMHead = RefreshHeader{ [weak self] in
             guard self != nil else { return }
             self?.requsetTipsDataIsMore()
