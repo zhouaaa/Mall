@@ -1,14 +1,15 @@
 //
-//  MMHomePageCollectionGoodCell.swift
+//  MMNinePageCollectionGoodCell.swift
 //  Mall
 //
-//  Created by iOS on 2022/3/2.
+//  Created by iOS on 2022/5/12.
 //
 
 import UIKit
+import YYKit
 
 
-class MMHomePageCollectionGoodCell: UICollectionViewCell {
+class MMNinePageCollectionGoodCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,20 +65,20 @@ class MMHomePageCollectionGoodCell: UICollectionViewCell {
         
     }
     
-    func cellItemData(itemModel: MMHomeGoodItemModel) {
+    func cellItemData(itemModel: MMNineGoodItemModel) {
        
-        self.iconImageV.setImageWith(URL(string: itemModel.mainPic ?? ""), placeholder: kGlobalDefultImage)
+        self.iconImageV.setImageWith(URL(string: itemModel.pic ?? ""), placeholder: kGlobalDefultImage)
         
-        self.sallLabel.text = "已售: \(itemModel.monthSales.formatUsingAbbrevation())"
+        self.sallLabel.text = "已售: \(itemModel.xiaoliang.formatUsingAbbrevation())"
         
-        let priceString: String = "券后价 ¥ \(itemModel.actualPrice)"
+        let priceString: String = "券后价 ¥ \(itemModel.jiage)"
         let attributedPriceText = NSMutableAttributedString(string: priceString, attributes: [.font: UIFont.df_getCustomFontType(with: .Medium, fontSize: 18)!, .foregroundColor: UIColor.hexColor(0xf21724)])
         let nsString = NSString(string: attributedPriceText.string)
         attributedPriceText.addAttributes([.font: UIFont.boldSystemFont(ofSize: 12), .foregroundColor: UIColor.hexColor(0x999999)], range: nsString.range(of: "¥:"))
         attributedPriceText.addAttributes([.font: UIFont.boldSystemFont(ofSize: 12), .foregroundColor: UIColor.hexColor(0x999999)], range: nsString.range(of: "券后价 ¥"))
         self.priceLabel.attributedText = attributedPriceText
         
-        self.couponLabel.text = " \(itemModel.couponPrice) 元"
+        self.couponLabel.text = " \(itemModel.quanJine) 元"
         
         let titleAttributed = NSMutableAttributedString(string: itemModel.dtitle ?? itemModel.title ?? "", attributes: [
             .font: UIFont.df_getCustomFontType(with: .Medium, fontSize: 14) ?? UIFont.systemFont(ofSize: 14),

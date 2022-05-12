@@ -75,7 +75,7 @@ class MMCategoryListController: MMBaseViewController {
                 
                 if (self?.goodLists.count ?? 0) > (_result.totalNum ?? 0) {
                     self?.collectionView.MMFoot?.endRefreshingWithNoMoreData()
-                } else { self?.currentPage = +1 }
+                } else { self?.currentPage += 1 }
             }, onError: { [weak self] error in
                 self?.collectionView.endRefreshing()
             })
@@ -93,7 +93,7 @@ class MMCategoryListController: MMBaseViewController {
                 
                 if (self?.goodLists.count ?? 0) > (_result.totalNum ?? 0) {
                     self?.collectionView.MMFoot?.endRefreshingWithNoMoreData()
-                } else { self?.currentPage = +1 }
+                } else { self?.currentPage += 1 }
             }, onError: { [weak self] error in
                 self?.collectionView.endRefreshing()
             })
@@ -111,7 +111,7 @@ class MMCategoryListController: MMBaseViewController {
                 
                 if (self?.goodLists.count ?? 0) >= (_result.total ?? 0) {
                     self?.collectionView.MMFoot?.endRefreshingWithNoMoreData()
-                } else { self?.currentPage = +1 }
+                } else { self?.currentPage += 1 }
             }, onError: { [weak self] error in
                 self?.collectionView.endRefreshing()
             })

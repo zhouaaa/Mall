@@ -24,7 +24,7 @@ class MMNineCateItemModel: HandyJSONModel {
 
 class MMNineCateItemNavModel: HandyJSONModel {
     
-    var id: Int = 0
+    var id: String?
 
     var title: String?
     

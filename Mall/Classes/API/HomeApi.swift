@@ -26,6 +26,9 @@ enum HomeApi {
     case HomelistTipOff(topic: String = "", type: String = "" ,selectTime: String = "", pageId: Int = 1, pageSize: Int = 20)
     
     case HomeRankingList
+    
+    case HomeGoodLists(cids: Int = -1, pageId: Int = 1, pageSize: Int = 20)
+    
 
 }
 
@@ -49,6 +52,8 @@ extension HomeApi: BaseApi {
             return "api/dels/spider/list-tip-off"
         case .HomeRankingList:
             return "api/goods/get-ranking-list"
+        case .HomeGoodLists:
+            return "api/goods/get-goods-list"
         }
     }
 
@@ -86,14 +91,21 @@ extension HomeApi: BaseApi {
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
             
         case .HomeRankingList:
-            var parametDict = [String: String]()
-            parametDict["version"] = "v1.3.0"
-            parametDict["appKey"] = "612bcfe884763"
+            var parametDict = BaseApiConfig.defaultParameters
             parametDict["rankType"] = "1"
             parametDict["pageId"] = "1"
             parametDict["pageSize"] = "2"
-            parametDict["sign"] = "b7e9903326a8cf9a4f4692e850b19ee4"
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
+            
+        case .HomeGoodLists(let cids, let pageId , let pageSize):
+            var parametDict = BaseApiConfig.defaultParameters
+            if cids >= 0 {
+                parametDict["cids"] = "\(cids)"
+            }
+            parametDict["pageId"] = "\(pageId)"
+            parametDict["pageSize"] = "\(pageSize)"
+            return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
+            
         }
     }
     

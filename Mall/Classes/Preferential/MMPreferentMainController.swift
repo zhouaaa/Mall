@@ -58,7 +58,7 @@ class MMPreferentMainController: MMBaseViewController {
             
             if (self?.listDatas.count ?? 0) >= (_result.totalNum ?? 0) {
                 self?.tableView.MMFoot?.endRefreshingWithNoMoreData()
-            } else { self?.currentPage = +1 }
+            } else { self?.currentPage += 1 }
             
         }, onError: { error in
             

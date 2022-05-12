@@ -15,6 +15,10 @@ class MMNineMainController: MMBaseViewController {
 
         // Do any additional setup after loading the view.
         
+        self.hx_barStyle = .black
+        self.hx_backgroundColor = UIColor.hexColor(0xff7300)
+        
+        
     }
     
     override func setupUI() {
@@ -58,7 +62,7 @@ class MMNineMainController: MMBaseViewController {
     
     private lazy var segmentedView: JXSegmentedView = {
         let _v = JXSegmentedView(frame: CGRect(x: 0, y: 0, width: Int(kScreenWidth), height: 44))
-        _v.backgroundColor = UIColor.dynamicColor( UIColor.white, darkColor: UIColor.hexColor(0x181818))
+        _v.backgroundColor = .clear
         _v.delegate = self
         _v.isContentScrollViewClickTransitionAnimationEnabled = false
         _v.dataSource = dataSource
@@ -68,10 +72,10 @@ class MMNineMainController: MMBaseViewController {
     
     private lazy var dataSource: JXSegmentedTitleDataSource = {
       let _data = JXSegmentedTitleDataSource()
-      _data.titleNormalColor = UIColor.hexColor(0x666666)
-      _data.titleSelectedColor = UIColor.hexColor(0xf21724)
-        _data.titleNormalFont = UIFont.systemFont(ofSize: 14)
-        _data.titleSelectedFont = UIFont.boldSystemFont(ofSize: 14)
+      _data.titleNormalColor = UIColor.hexColor(0xC8CDCC)
+        _data.titleSelectedColor = UIColor.white
+      _data.titleNormalFont = UIFont.df_getCustomFontType(with: .Medium, fontSize: 15) ?? UIFont.systemFont(ofSize: 15)
+      _data.titleSelectedFont = UIFont.df_getCustomFontType(with: .Medium, fontSize: 16) ?? UIFont.systemFont(ofSize: 16)
       _data.isTitleColorGradientEnabled = false
       _data.isItemSpacingAverageEnabled = false
       _data.isTitleZoomEnabled = false
