@@ -127,6 +127,10 @@ extension MMHomePageController: UICollectionViewDelegateFlowLayout, UICollection
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(MMGoodsDetailsTbController(goodId: self.dataLists[indexPath.row].goodsId ?? ""), animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.width - 36)*0.5, height: (collectionView.width - 36)*0.75)
     }

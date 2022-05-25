@@ -1,18 +1,20 @@
 //
-//  MMCategoryBannerCollectionCell.swift
+//  MMGoodsDetailsCollectionBannerCell.swift
 //  Mall
 //
-//  Created by iOS on 2022/4/2.
+//  Created by iOS on 2022/5/18.
 //
 
 import UIKit
 import SDCycleScrollView
 
 
-class MMCategoryBannerCollectionCell: UICollectionViewCell {
+class MMGoodsDetailsCollectionBannerCell: UICollectionViewCell, SDCycleScrollViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.white
+        
         self.markUI()
     }
     
@@ -24,7 +26,8 @@ class MMCategoryBannerCollectionCell: UICollectionViewCell {
         
         self.contentView.addSubview(self.bannerView)
         self.bannerView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(self.contentView.snp.top)
         }
     }
     
@@ -35,6 +38,12 @@ class MMCategoryBannerCollectionCell: UICollectionViewCell {
         }
     }
     
+    
+    /// SDCycleScrollViewDelegate
+    func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAt index: Int) {
+        
+    }
+    
     private lazy var bannerView: SDCycleScrollView = {
         let _v = SDCycleScrollView(frame: CGRect.zero, delegate: self, placeholderImage: kGlobalDefultImage)
         _v?.backgroundColor = UIColor.white
@@ -43,11 +52,4 @@ class MMCategoryBannerCollectionCell: UICollectionViewCell {
         return _v!
     }()
     
-}
-
-extension MMCategoryBannerCollectionCell: SDCycleScrollViewDelegate {
-    
-    func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAt index: Int) {
-        
-    }
 }

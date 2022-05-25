@@ -172,7 +172,7 @@ extension MMCategoryListController: UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if self.currentPageType == 0 {
-            self.navigationController?.pushViewController(MMCateGoryTBDetailController(goodId: self.goodLists[indexPath.row].goodsId ?? ""), animated: true)
+            self.navigationController?.pushViewController(MMGoodsDetailsTbController(goodId: self.goodLists[indexPath.row].goodsId ?? ""), animated: true)
         }
     }
 

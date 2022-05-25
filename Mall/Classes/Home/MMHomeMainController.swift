@@ -9,7 +9,7 @@ import UIKit
 import JXPagingView
 import JXSegmentedView
 
-class MMHomeMainController: MMBaseViewController {
+class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,7 @@ class MMHomeMainController: MMBaseViewController {
             menu.append(contentsOf: result?.icons ?? [MMHomeIconBannerModel]())
             menu.append(contentsOf: result?.small_icons ?? [MMHomeIconBannerModel]())
             self.headView.reloadMenuData(listData: menu)
+            self.menuItems = menu
         }, onError: { error in
             
         })
@@ -48,22 +49,16 @@ class MMHomeMainController: MMBaseViewController {
     }
 
     
-    private func reloadHomeDataCateGory() {
-        if self.tabbarItems.count <= 0 {
-            return
+    /// Menu Click
+    func homeMainViewCollectionView(_ collectionView: MMHomeMenusView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            self.tabBarController?.selectedIndex = 1
+        } else if indexPath.row == 1 {
+            self.navigationController?.pushViewController(MMHomeLargeCouponController(), animated: true)
         }
-        
-        var titleStringLists = [String]()
-        self.tabbarItems.forEach { (valTab) in
-            titleStringLists.append(valTab.cname ?? "")
-        }
-        self.dataSource.titles = titleStringLists
-        self.segmentedView.reloadData()
-        self.listPageView.reloadData()
     }
     
-    
-    private var tabbarItems = [MMCategoryListModel]()
+    private var menuItems = [MMHomeIconBannerModel]()
     
     private var homeMainModel: MMHomeMainModel?
     
@@ -113,6 +108,7 @@ class MMHomeMainController: MMBaseViewController {
     
     private lazy var headView: MMHomeMainView = {
         let _v = MMHomeMainView(frame: CGRect(x: 0, y: 0, width: Int(kScreenWidth), height: tableHeaderViewHeight))
+        _v.delegate = self
         return _v
     }()
     

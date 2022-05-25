@@ -31,7 +31,7 @@ class MMHomeMenusView: UIView {
     
     private let PageViewWidth:CGFloat = 60
 
-    var delegate: MMHomeMenusViewDelegate!
+    public var delegate: MMHomeMenusViewDelegate!
     
     var menuListsModel = [MMHomeIconBannerModel]()
     
@@ -70,7 +70,7 @@ class MMHomeMenusView: UIView {
         self.menuCollectionView.reloadData()
         
         let _count = lists.count
-        self.pageControl.numberOfPages = Int(ceilf(Float(_count / 10)))
+        self.pageControl.numberOfPages = Int(ceilf(Float(_count)/10))
         self.pageControl.currentPage = 0
         self.pageControl.isHidden = _count < 10
         self.menuCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
@@ -103,7 +103,7 @@ class MMHomeMenusView: UIView {
     
     private lazy var pageControl: UIPageControl = {
         let _v = UIPageControl()
-        _v.pageIndicatorTintColor = UIColor.hexColor(0x999999)
+        _v.pageIndicatorTintColor = UIColor.hexColor(0x333333)
         _v.currentPageIndicatorTintColor = UIColor.hexColor(0xf21724)
         return _v
     }()
@@ -130,17 +130,14 @@ extension MMHomeMenusView: UICollectionViewDataSource, UICollectionViewDelegate,
         self.delegate.collectionView(self, didSelectItemAt: indexPath)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let page = scrollView.contentOffset.x/kScreenWidth
-        pageControl.currentPage = Int(page)
-    }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        UIView.animate(withDuration: 0.1) {
-//            let offset: CGPoint = scrollView.contentOffset
-//
-//        }
-//    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let page = Int(ceilf(Float(scrollView.contentOffset.x/self.menuCollectionView.width)))
+            if (page > self.pageControl.numberOfPages) {
+                self.pageControl.currentPage = (self.pageControl.numberOfPages - 1)
+            } else {
+                self.pageControl.currentPage = page
+            }
+        }
 }
 
 

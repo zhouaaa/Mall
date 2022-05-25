@@ -23,13 +23,13 @@ class MMCategoryGoodListModel: HandyJSONModel {
 class MMCategoryPublicGoodModel: HandyJSONModel {
 
     /// ====  公用 ==== ///
-    var price: Double?
+    var price: Double = 0
     var shopName: String?
     var shopId: String?
     var title: String?
     var shopLevel: String?
     var brandName: String?
-    var couponPrice: Int?
+    var couponPrice: Double = 0
     
     ///   === 抖音 ===   ///
     var cosFee: Int?
@@ -151,30 +151,29 @@ class MMCategoryPublicGoodModel: HandyJSONModel {
     
     /// 详情轮播图
     var imgs: String?
-   /// 淘宝详情图
-    var detailPics: [MMCategoryGoodDetailPicsModel]?
-    
-//    var _detailPics: [MMCategoryGoodDetailPicsModel]? {
-//        let lists = detailPics?.components(separatedBy: ",")
-//        return [MMCategoryGoodDetailPicsModel].deserialize(from: lists)
-//    }
-    
+    /// 淘宝详情图
+    var detailPics: String?
+    ///var detailPics: [MMCategoryGoodDetailPicsModel]?
     
     /// 原价
-    var originalPrice: Double?
+    var originalPrice: Double = 0
     
     /// 折后价
-    var actualPrice: Double?
+    var actualPrice: Double = 0
     /// 店铺类型，1-天猫，0-淘宝
     var shopType: Int?
     
+    /// 是否是超市
+    var tchaoshi: Bool = false
+    
+    
     var goldSellers: Int?
     
-    var monthSales: Int?
+    var monthSales: Int = 0
     
-    var twoHoursSales: Int?
+    var twoHoursSales: Int = 0
     
-    var dailySales: Int?
+    var dailySales: Int = 0
     /// 佣金类型，0-通用，1-定向，2-高佣，3-营销计划
     var commissionType: Int?
     
@@ -214,17 +213,17 @@ class MMCategoryPublicGoodModel: HandyJSONModel {
     
     var tbcid: String?
     
-    var descScore: Int?
+    var descScore: Double?
     
     var dsrScore: Int?
     
     var dsrPercent: Int?
     
-    var shipScore: Int?
+    var shipScore: Double?
     
     var shipPercent: Int?
     
-    var serviceScore: Int?
+    var serviceScore: Double?
     
     var servicePercent: Int?
     
@@ -318,5 +317,12 @@ class MMCategoryGoodDetailPicsModel: HandyJSONModel {
     var width: CGFloat?
     
     var height: CGFloat?
+    
+    var _ImageHeight: CGFloat {
+        let size = MMCommonUtil.shared.imageSise(str: img ?? "", width: width ?? 0, height: height ?? 0)
+        let itemHeight = (size.height) / (size.width) * CGFloat(kScreenWidth)
+        return itemHeight
+    }
+    
     
 }

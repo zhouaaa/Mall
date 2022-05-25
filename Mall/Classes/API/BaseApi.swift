@@ -157,9 +157,9 @@ extension MoyaProvider {
                     
                     // 没有业务错误, 成功
                     if code == 0 || code == 1 {
+                        NSLog(target)
+                        NSLog("success: \(target.baseURL.absoluteString + "/" + target.path)")
                         return  (data: json["data"], headers: headers)
-                        debugPrintTarget(target)
-                        debugPrint("success: \(target.baseURL.absoluteString + "/" + target.path)")
                     }
                     else {
                         var _json = json

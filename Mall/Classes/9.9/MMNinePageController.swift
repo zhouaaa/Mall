@@ -25,6 +25,8 @@ class MMNinePageController: MMBaseViewController {
     
     override func setupUI() {
         
+        self.view.backgroundColor = .clear
+        
         if self.currItemModel.navList?.count ?? 0 > 0 {
             var titleStringLists = ["全部"]
             self.currItemModel.navList?.forEach({ (val) in
@@ -140,7 +142,7 @@ class MMNinePageController: MMBaseViewController {
     
     private lazy var segmentedView: JXSegmentedView = {
         let _v = JXSegmentedView(frame: CGRect(x: 0, y: 0, width: Int(kScreenWidth), height: 44))
-        _v.backgroundColor = UIColor.dynamicColor( UIColor.white, darkColor: UIColor.hexColor(0x181818))
+        _v.backgroundColor = .clear
         _v.delegate = self
         _v.isContentScrollViewClickTransitionAnimationEnabled = false
         _v.contentEdgeInsetLeft = 12
@@ -149,7 +151,7 @@ class MMNinePageController: MMBaseViewController {
         //配置指示器
         let indicator = JXSegmentedIndicatorBackgroundView()
         indicator.indicatorHeight = 28
-        indicator.indicatorColor = UIColor.hexColor(0xf21724)
+        indicator.indicatorColor = UIColor.white
         indicator.indicatorCornerRadius = 14
         indicator.indicatorPosition = .center
         indicator.isIndicatorWidthSameAsItemContent = true
@@ -160,10 +162,10 @@ class MMNinePageController: MMBaseViewController {
     
     private lazy var dataSource: JXSegmentedTitleDataSource = {
       let _data = JXSegmentedTitleDataSource()
-      _data.titleNormalColor = UIColor.hexColor(0x666666)
-        _data.titleSelectedColor = UIColor.white
-      _data.titleNormalFont = UIFont.df_getCustomFontType(with: .Medium, fontSize: 14) ?? UIFont.systemFont(ofSize: 14)
-      _data.titleSelectedFont = UIFont.df_getCustomFontType(with: .Medium, fontSize: 14) ?? UIFont.systemFont(ofSize: 14)
+      _data.titleNormalColor = UIColor.white.withAlphaComponent(0.8)
+        _data.titleSelectedColor = UIColor.hexColor(0xff7300)
+      _data.titleNormalFont = UIFont.df_getCustomFontType(with: .Regular, fontSize: 14) ?? UIFont.systemFont(ofSize: 14)
+      _data.titleSelectedFont = UIFont.df_getCustomFontType(with: .Regular, fontSize: 15) ?? UIFont.systemFont(ofSize: 15)
       _data.isTitleColorGradientEnabled = false
       _data.isItemSpacingAverageEnabled = false
       _data.isTitleZoomEnabled = false
@@ -190,6 +192,12 @@ extension MMNinePageController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if self.dataLists.count > indexPath.row {
+            self.navigationController?.pushViewController(MMGoodsDetailsTbController(goodId: self.dataLists[indexPath.row].goodsid ?? ""), animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

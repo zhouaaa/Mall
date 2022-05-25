@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol MMHomeMainViewDelegate {
+    func homeMainViewCollectionView(_ collectionView: MMHomeMenusView, didSelectItemAt indexPath: IndexPath)
+}
+
+
 class MMHomeMainView: UIView {
 
+    public var delegate: MMHomeMainViewDelegate!
+    
     private var menuHeight: CGFloat {
         get {
             return CGFloat((kScreenWidth*0.4 + 60))
@@ -62,6 +69,6 @@ class MMHomeMainView: UIView {
 extension MMHomeMainView: MMHomeMenusViewDelegate {
 
     func collectionView(_ collectionView: MMHomeMenusView, didSelectItemAt indexPath: IndexPath) {
-        
+        self.delegate.homeMainViewCollectionView(collectionView, didSelectItemAt: indexPath)
     }
 }

@@ -72,5 +72,19 @@ extension Date {
         formatter.dateFormat = format
         return formatter.string(from: date)
     }
+ 
+    /// 字符串转Date类型
+    ///
+    /// - parameter str:           日期字符串
+    /// - parameter withFormatter: 格式化
+    ///
+    /// - returns: date
+    public static func dateFromString(_ str:String ,withFormatter:String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.init(secondsFromGMT: 8);
+        formatter.dateFormat = withFormatter
+        return formatter.date(from: str)
+    }
+    
     
 }

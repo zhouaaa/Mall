@@ -47,6 +47,10 @@ public var kStatusBarHeight: CGFloat {
     return UIApplication.shared.statusBarFrame.height
 }
 
+// 屏幕缩放函数
+func STtrans(_ length:CGFloat) -> (CGFloat) {
+    return (length/375)*kScreenWidth
+}
 
 //自定义调试阶段log
 func NSLog(filePath: String = #file, rowCount: Int = #line) {

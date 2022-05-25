@@ -94,8 +94,8 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
         var priceString: String = ""
         if cellType == 0 {
             self.goodImageV.setImageWith(URL(string: cellData.mainPic ?? ""), placeholder: kGlobalDefultImage)
-            self.sallLabel.text = "已售: \(cellData.monthSales ?? 0)"
-            priceString = "折后价 ¥: \(cellData.actualPrice ?? 0.00)"
+            self.sallLabel.text = "已售: \(cellData.monthSales.formatUsingAbbrevation())"
+            priceString = "折后价 ¥: \(cellData.actualPrice)"
         } else if cellType == 1 {
             self.goodImageV.setImageWith(URL(string: cellData.imageUrlList?[0] ?? ""), placeholder: kGlobalDefultImage)
             self.sallLabel.text = "已售: \(cellData.inOrderCount30Days ?? 0)"

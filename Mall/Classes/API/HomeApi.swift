@@ -29,14 +29,19 @@ enum HomeApi {
     
     case HomeGoodLists(cids: Int = -1, pageId: Int = 1, pageSize: Int = 20)
     
+    /// 大额优惠券
+    case HomeCouponColumnConf
 
+    case HomeCouponPageConfig(pageUrl: String, pageId: Int = 1, pageSize: Int = 20)
+    
+    
 }
 
 extension HomeApi: BaseApi {
     
     var baseURL: URL {
         switch self {
-        case .HomeCmsV2Ads:
+        case .HomeCmsV2Ads, .HomeCouponColumnConf:
             return URL(string: BaseApiConfig.scheme + BaseApiConfig.hostV3)!
         
         default:
@@ -54,6 +59,11 @@ extension HomeApi: BaseApi {
             return "api/goods/get-ranking-list"
         case .HomeGoodLists:
             return "api/goods/get-goods-list"
+        
+        case .HomeCouponColumnConf:
+            return "cms-v2/column-conf"
+        case .HomeCouponPageConfig(let pageUrl, _, _):
+            return "\(pageUrl)"
         }
     }
 
@@ -106,6 +116,17 @@ extension HomeApi: BaseApi {
             parametDict["pageSize"] = "\(pageSize)"
             return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
             
+            
+        case .HomeCouponColumnConf:
+            var parametDict = BaseApiConfig.defaultParameters
+            parametDict["id"] = "411"
+            return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
+            
+        case .HomeCouponPageConfig(_ , let pageId , let pageSize):
+            var parametDict = BaseApiConfig.defaultParameters
+            parametDict["pageId"] = "\(pageId)"
+            parametDict["pageSize"] = "\(pageSize)"
+            return .requestParameters(parameters: parametDict, encoding: URLEncoding.default)
         }
     }
     

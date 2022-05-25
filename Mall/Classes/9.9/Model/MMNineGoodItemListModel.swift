@@ -85,3 +85,51 @@ class MMNineGoodItemBeforetitlelablesModel : HandyJSONModel {
 
 }
 
+
+class MMNineTopGoodListModel : HandyJSONModel {
+
+    var goodsList: [MMNineTopGoodModel]?
+
+    var robbingNum: Int = 0
+}
+
+class MMNineTopGoodModel : HandyJSONModel {
+
+    var ID: Int = 0
+
+    var isShow: Int = 0
+
+    var huodongType: Int = 0
+
+    var istmall: Int = 0
+
+    var yongjin: Double = 0
+
+    var yuanjia: Double = 0
+
+    var sellNum: Int = 0
+
+    var pic: String?
+
+    var beforePriceLabelType: Int = 0
+
+    var quanId: String?
+
+    var jiage: Double = 0
+
+    var shortTag: String?
+
+    var title: String?
+
+    var tmall: Int = 0
+
+    var goodsid: String?
+
+    var dtitle: String?
+
+    var xiaoliang: Int = 0
+
+    var quanJine: Int = 0
+
+}
+
