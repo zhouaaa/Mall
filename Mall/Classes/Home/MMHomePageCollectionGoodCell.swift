@@ -31,35 +31,35 @@ class MMHomePageCollectionGoodCell: UICollectionViewCell {
         
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.iconImageV.snp.bottom).offset(2)
-            make.left.equalTo(self.iconImageV.snp.left).offset(6)
-            make.right.equalTo(self.iconImageV.snp.right).offset(-6)
+            make.top.equalTo(self.iconImageV.snp.bottom)
+            make.left.equalTo(self.iconImageV.snp.left).offset(STtrans(6))
+            make.right.equalTo(self.iconImageV.snp.right).offset(-STtrans(6))
         }
         
         self.contentView.addSubview(self.priceLabel)
         self.priceLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.titleLabel.snp.left)
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(2)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(STtrans(4))
         }
         
+        self.contentView.addSubview(self.couponTitleLabel)
+        self.couponTitleLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.priceLabel.snp.left)
+            make.top.equalTo(self.priceLabel.snp.bottom).offset(STtrans(4))
+        }
         
         self.contentView.addSubview(self.couponLabel)
         self.couponLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(self.iconImageV.snp.right).offset(-6)
-            make.centerY.equalTo(self.priceLabel.snp.centerY)
+            make.left.equalTo(self.couponTitleLabel.snp.right).offset(-2)
+            make.top.equalTo(self.couponTitleLabel.snp.top)
+            make.bottom.equalTo(self.couponTitleLabel.snp.bottom)
         }
-        
-        self.contentView.addSubview(self.couponImageV)
-        self.couponImageV.snp.makeConstraints { (make) in
-            make.right.equalTo(self.couponLabel.snp.left).offset(-2)
-            make.centerY.equalTo(self.couponLabel.snp.centerY)
-            make.width.height.equalTo(20)
-        }
+        self.couponLabel.bringSubviewToFront(self.couponTitleLabel)
         
         self.contentView.addSubview(self.sallLabel)
         self.sallLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.priceLabel.snp.left)
-            make.top.equalTo(self.priceLabel.snp.bottom).offset(2)
+            make.left.equalTo(self.couponTitleLabel.snp.left)
+            make.top.equalTo(self.couponTitleLabel.snp.bottom).offset(STtrans(4))
         }
         
     }
@@ -127,18 +127,28 @@ class MMHomePageCollectionGoodCell: UICollectionViewCell {
         return _lab
     }()
     
-   private lazy var couponLabel: UILabel = {
-        let _lab = UILabel()
-        _lab.textColor = UIColor.hexColor(0x333333)
-        _lab.font = UIFont.df_getCustomFontType(with: .Semibold, fontSize: 14)
-        _lab.textAlignment = .left
+    
+    private lazy var couponTitleLabel: MMPaddingLabel = {
+        let _lab = MMPaddingLabel()
+        _lab.backgroundColor = UIColor.white
+        _lab.font = UIFont.df_getCustomFontType(with: .Regular, fontSize: 12)
+        _lab.textColor = UIColor.hexColor(0xfe3a33)
+        _lab.textInsets = UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)
+       _lab.textAlignment = .center
+       _lab.text = "券"
+        _lab.layer(radius: 2, borderWidth: 1.0, borderColor: UIColor.hexColor(0xfe3a33))
         return _lab
     }()
- 
-    private lazy var couponImageV: UIImageView = {
-        let _v = UIImageView()
-        _v.image = UIImage(named: "comm_coupon")
-        return _v
+    
+    private lazy var couponLabel: MMPaddingLabel = {
+        let _lab = MMPaddingLabel()
+        _lab.backgroundColor = UIColor.hexColor(0xff4f4f, 0.98)
+        _lab.font = UIFont.df_getCustomFontType(with: .Regular, fontSize: 12)
+        _lab.textColor = UIColor.white
+        _lab.textInsets = UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 6)
+       _lab.textAlignment = .center
+        _lab.layer(radius: 2, borderWidth: 0.0, borderColor: UIColor.hexColor(0xff4f4f, 0.98))
+        return _lab
     }()
     
 }

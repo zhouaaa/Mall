@@ -7,8 +7,54 @@
 
 import Foundation
 import UIKit
+import RxSwift
+
+private var tapKey: Void?
 
 extension UIView {
+    
+    static var reuseId : String {
+        get {
+            return NSStringFromClass(self).components(separatedBy: ".").last!
+        }
+    }
+    
+    static var nib: UINib? {
+        get {
+            return UINib(nibName: self.reuseId, bundle: nil)
+        }
+    }
+    
+    var tap: UITapGestureRecognizer! {
+        get {
+            if let value = objc_getAssociatedObject(self, &tapKey) as? UITapGestureRecognizer {
+                return value
+            } else {
+                let tap: UITapGestureRecognizer = UITapGestureRecognizer()
+                self.addGestureRecognizer(tap)
+                self.tap = tap
+                return tap
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &tapKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    /*
+    /// 扩展 view 的点击手势事件回调
+    public func performWhenTap(action: @escaping ()->Void) {
+        let tap = UITapGestureRecognizer()
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        self.addGestureRecognizer(tap)
+        self.isUserInteractionEnabled = true
+       
+        _ = tap.rx.event.subscribe(onNext: { tap in
+            action()
+        })
+    }
+     */
     
     /// 移动到指定中心点位置
     func moveToPoint(point:CGPoint) -> Void {

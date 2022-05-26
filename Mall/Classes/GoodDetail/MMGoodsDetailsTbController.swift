@@ -40,40 +40,68 @@ class MMGoodsDetailsTbController: MMBaseViewController {
     
     override func bind() {
 
-        /// 商品数据
-        _ = kCategoryApiProvider.yn_request(.getTaoBaoGoodsDetails(goodsId: self.currentGoodId)).subscribe(onNext: { [weak self] (json) in
-            self?.collectionView.endRefreshing()
-            
-            let _model = MMCategoryPublicGoodModel.deserialize(from: json)
-            self?.currentGoodModel = _model
-            
-            self?.detailPics = JsonUtil.jsonArrayToModel(_model?.detailPics ?? "", MMCategoryGoodDetailPicsModel.self) as! [MMCategoryGoodDetailPicsModel]
-            
-            UIView.performWithoutAnimation {
-                self?.collectionView.reloadData()
-            }
-        }, onError: { [weak self] error in
-            self?.collectionView.endRefreshing()
-            if (error as NSError).code == 400 {
-                self?.navigationController?.popViewController(animated: true)
-            }
-        })
+        self.collectionView.MMHead = RefreshHeader{ [weak self] in
+            guard self != nil else { return }
+            self?.handleGoodData()
+        }
         
-        /// 推荐
-        _ = kCategoryApiProvider.yn_request(.getTaoBaolistSimilerGoods(goodsId: self.currentGoodId)).subscribe(onNext: { [weak self] (json) in
-            self?.collectionView.endRefreshing()
-            let result = json.arrayValue.compactMap({MMCategoryPublicGoodModel.deserialize(from: $0)})
-            
-            self?.recommListData = result
-            UIView.performWithoutAnimation {
-                self?.collectionView.reloadData()
-            }
-        }, onError: { [weak self] error in
-            self?.collectionView.endRefreshing()
-        })
+        self.handleGoodData()
         
     }
 
+    private func handleGoodData(onlyRecomm: Bool = false) {
+        
+        /// 商品数据
+        if onlyRecomm {
+            _ = kCategoryApiProvider.yn_request(.getTaoBaolistSimilerGoods(goodsId: self.currentGoodId)).subscribe(onNext: { [weak self] (json) in
+                self?.collectionView.endRefreshing()
+                let result = json.arrayValue.compactMap({MMCategoryPublicGoodModel.deserialize(from: $0)})
+                
+                self?.recommListData = result
+                UIView.performWithoutAnimation {
+                    self?.collectionView.reloadData()
+                }
+            }, onError: { [weak self] error in
+                self?.collectionView.endRefreshing()
+                self?.collectionView.reloadData()
+            })
+            
+        }
+        else
+        {
+            _ = kCategoryApiProvider.yn_request(.getTaoBaoGoodsDetails(goodsId: self.currentGoodId)).subscribe(onNext: { [weak self] (json) in
+                self?.collectionView.endRefreshing()
+                
+                let _model = MMCategoryPublicGoodModel.deserialize(from: json)
+                self?.currentGoodModel = _model
+                
+                self?.detailPics = JsonUtil.jsonArrayToModel(_model?.detailPics ?? "", MMCategoryGoodDetailPicsModel.self) as! [MMCategoryGoodDetailPicsModel]
+                
+                UIView.performWithoutAnimation {
+                    self?.collectionView.reloadData()
+                }
+            }, onError: { [weak self] error in
+                self?.collectionView.endRefreshing()
+                self?.collectionView.reloadData()
+                if (error as NSError).code == 400 {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            })
+            
+            _ = kCategoryApiProvider.yn_request(.getTaoBaolistSimilerGoods(goodsId: self.currentGoodId)).subscribe(onNext: { [weak self] (json) in
+                self?.collectionView.endRefreshing()
+                let result = json.arrayValue.compactMap({MMCategoryPublicGoodModel.deserialize(from: $0)})
+                
+                self?.recommListData = result
+                UIView.performWithoutAnimation {
+                    self?.collectionView.reloadData()
+                }
+            }, onError: { [weak self] error in
+                self?.collectionView.endRefreshing()
+            })
+        }
+    }
+    
     private var currentGoodId: String = ""
     private var currentGoodModel: MMCategoryPublicGoodModel?
     /// 图片详情数组
@@ -201,6 +229,13 @@ extension MMGoodsDetailsTbController: UICollectionViewDelegate, UICollectionView
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 2 && self.recommListData.count > indexPath.row {
+            self.currentGoodId = self.recommListData[indexPath.row].goodsId ?? ""
+            self.handleGoodData()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
@@ -220,7 +255,7 @@ extension MMGoodsDetailsTbController: UICollectionViewDelegate, UICollectionView
                 return CGSize(width: collectionView.width, height: self.detailPics[indexPath.row]._ImageHeight)
             }
         default:
-            return CGSize(width: (collectionView.width - STtrans(36))*0.5, height: (collectionView.width - STtrans(36))*(155.24/184.6))
+            return CGSize(width: (collectionView.width - STtrans(30))*0.5, height: (collectionView.width - STtrans(30))*(155.24/184.6))
         }
     }
     
@@ -257,7 +292,7 @@ extension MMGoodsDetailsTbController: UICollectionViewDelegate, UICollectionView
         case 1:
             return 0
         default:
-            return STtrans(12)
+            return STtrans(6)
         }
     }
     
@@ -266,16 +301,16 @@ extension MMGoodsDetailsTbController: UICollectionViewDelegate, UICollectionView
         case 1:
             return 0
         default:
-            return 6
+            return STtrans(6)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch section {
         case 0,1:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: STtrans(12))
+            return UIEdgeInsets.zero
         default:
-            return UIEdgeInsets(top: STtrans(12), left: STtrans(12), bottom: STtrans(12), right: STtrans(12))
+            return UIEdgeInsets(top: 0, left: STtrans(12), bottom: 0, right: STtrans(12))
         }
     }
     
@@ -298,7 +333,7 @@ extension MMGoodsDetailsTbController: UICollectionViewDelegate, UICollectionView
     
    /// JXSegmentedViewDelegate
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        self.collectionView.setContentOffset(.zero, animated: true)
+        self.collectionView.scrollToItem(at: IndexPath(row: 0, section: index), at: .centeredHorizontally, animated: true)
     }
     
     

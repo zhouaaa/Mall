@@ -29,8 +29,8 @@ class MMHomeCouponPageTableCell: UITableViewCell {
             var newframe = frame
             newframe.origin.x += 12
             newframe.size.width -= 24
-            newframe.origin.y += 8
-            newframe.size.height -= 16
+            newframe.origin.y += 6
+            newframe.size.height -= 12
             super.frame = newframe
         }
     }

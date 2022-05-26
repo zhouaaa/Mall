@@ -31,6 +31,8 @@ target 'Mall' do
   #格式化
   pod 'SwiftLint'
   pod 'YYKit'
+  #图片浏览器
+  pod 'Lantern', '1.1.2'
   
   
 end

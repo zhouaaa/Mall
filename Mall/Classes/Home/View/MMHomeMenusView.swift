@@ -16,29 +16,13 @@ protocol MMHomeMenusViewDelegate {
 
 class MMHomeMenusView: UIView {
     
-    private var itemWidth: CGFloat {
-        get {
-            return CGFloat(kScreenWidth / 5) //item 宽度
-        }
-    }
-      
-    private var itemHeight: CGFloat {
-        get {
-            return CGFloat(self.itemWidth + 20) //item 高度
-        }
-    }
-    
-    
-    private let PageViewWidth:CGFloat = 60
 
     public var delegate: MMHomeMenusViewDelegate!
     
-    var menuListsModel = [MMHomeIconBannerModel]()
+    private var menuListsModel = [MMHomeIconBannerModel]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = UIColor.hexColor(0xf6f6f6)
         
         self.setUI()
     }
@@ -51,16 +35,17 @@ class MMHomeMenusView: UIView {
         
         self.addSubview(self.menuCollectionView)
         menuCollectionView.snp.makeConstraints { (make) in
-            make.left.right.top.equalToSuperview()
-            make.height.equalTo(itemHeight * 2)
+            make.left.equalTo(self.snp.left).offset(STtrans(12))
+            make.right.equalTo(self.snp.right).offset(-STtrans(12))
+            make.top.bottom.equalToSuperview()
         }
     
         self.addSubview(self.pageControl)
         self.pageControl.snp.makeConstraints { (make) in
-            make.top.equalTo(menuCollectionView.snp.bottom)
+            make.bottom.equalTo(self.menuCollectionView.snp.bottom)
             make.left.equalTo(self.menuCollectionView.snp.left).offset(20)
             make.right.equalTo(self.menuCollectionView.snp.right).offset(-20)
-            make.height.equalTo(10)
+            make.height.equalTo(STtrans(10))
         }
         
     }
@@ -79,13 +64,8 @@ class MMHomeMenusView: UIView {
     }
     
     private lazy var menuCollectionView: UICollectionView = {
-        let layout = MMHorizontalPageLayout()
-                    layout.itemCountPerRow = 5
-                    layout.rowCount = 2
-                    layout.minimumLineSpacing = 0
-                    layout.minimumInteritemSpacing = 0
-                    layout.itemSize = CGSize(width: itemWidth, height: itemHeight - 5)
-                    layout.scrollDirection = .horizontal
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let _v = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         _v.backgroundColor = UIColor.clear
         _v.dataSource = self
@@ -96,7 +76,7 @@ class MMHomeMenusView: UIView {
         _v.alwaysBounceVertical = false
         _v.showsHorizontalScrollIndicator = false
         _v.showsVerticalScrollIndicator = false
-        _v.register(MMHomeMenusCollectionCell.self, forCellWithReuseIdentifier: "MMHomeMenusCollectionCell")
+        _v.register(MMHomeMenusCollectionCell.self, forCellWithReuseIdentifier: MMHomeMenusCollectionCell.reuseId)
         return _v
     }()
     
@@ -110,14 +90,14 @@ class MMHomeMenusView: UIView {
 }
 
 
-extension MMHomeMenusView: UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate {
+extension MMHomeMenusView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout ,UIScrollViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menuListsModel.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MMHomeMenusCollectionCell", for: indexPath) as! MMHomeMenusCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MMHomeMenusCollectionCell.reuseId, for: indexPath) as! MMHomeMenusCollectionCell
         
         if indexPath.row < self.menuListsModel.count {
             cell.setMenuCellData(cellData: self.menuListsModel[indexPath.row])
@@ -128,6 +108,23 @@ extension MMHomeMenusView: UICollectionViewDataSource, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.delegate.collectionView(self, didSelectItemAt: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.width*0.2
+        return CGSize(width: cellWidth, height: cellWidth*(62.4/73.84))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: STtrans(6), left: 0, bottom: STtrans(18), right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -158,8 +155,7 @@ class MMHomeMenusCollectionCell: UICollectionViewCell {
         self.contentView.addSubview(self.iconImageV)
         self.iconImageV.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.snp.centerX)
-            make.centerY.equalTo(self.snp.centerY).offset(-10)
-            make.width.height.equalTo((kScreenWidth/375.0)*52.0)
+            make.width.height.equalTo(self.contentView.snp.width).multipliedBy(52.0/73.84)
         }
         
         self.contentView.addSubview(self.titleLabel)
@@ -178,7 +174,7 @@ class MMHomeMenusCollectionCell: UICollectionViewCell {
     
     private lazy var iconImageV: UIImageView = {
         let _v = UIImageView()
-        _v.backgroundColor = UIColor.clear
+        _v.contentMode = .scaleAspectFit
         _v.image = kGlobalDefultImage
         return _v
     }()

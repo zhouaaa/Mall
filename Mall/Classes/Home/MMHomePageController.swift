@@ -35,19 +35,15 @@ class MMHomePageController: MMBaseViewController {
     
     override func bind() {
         
-        self.collectionView.MMHead = RefreshHeader{ [weak self] in
-            guard self != nil else { return }
-            self?.currentPage = 1
-            self?.handleHomePageData()
-        }
-        
         self.collectionView.MMFoot = RefreshFooter{ [weak self] in
             guard self != nil else { return }
             self?.handleHomePageData()
         }
         
-        self.collectionView.MMHead?.beginRefreshing()
-        
+        /// 获取数据
+        self.currentPage = 1
+        self.handleHomePageData()
+    
     }
     
     private func handleHomePageData() {
@@ -76,36 +72,41 @@ class MMHomePageController: MMBaseViewController {
             self.collectionView.reloadData()
         })
         
+        
+        if self.currentCid == -1 {
+            _ = kHomeApiProvider.yn_request(.HomeCmsV2Ads(siteId:"369616", temp_id: "2", page: 1)).subscribe(onNext: { (json) in
+                self.collectionView.endRefreshing()
+                let result = MMHomeMainModel.deserialize(from: json)
+                
+                self.bannerLists = result?.h_banners ?? [MMHomeIconBannerModel]()
+                self.collectionView.reloadData()
+            }, onError: { error in
+                self.collectionView.endRefreshing()
+                self.collectionView.reloadData()
+            })
+        }
+        
     }
-
-    
-    private lazy var flowlayout: UICollectionViewFlowLayout = {
-        let flowlayout = UICollectionViewFlowLayout()
-        flowlayout.scrollDirection = .vertical
-        flowlayout.sectionInset = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
-        flowlayout.minimumLineSpacing = 12
-        flowlayout.minimumInteritemSpacing = 6
-        return flowlayout
-    }()
     
     private lazy var collectionView: UICollectionView = {
+        let flowlayout = UICollectionViewFlowLayout()
+        flowlayout.scrollDirection = .vertical
         let _v = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowlayout)
         _v.showsVerticalScrollIndicator = false
         _v.showsHorizontalScrollIndicator = false
         _v.delegate = self
         _v.dataSource = self
         _v.backgroundColor = UIColor.clear
-        _v.register(MMHomePageCollectionGoodCell.self, forCellWithReuseIdentifier: "MMHomePageCollectionGoodCell")
+        _v.register(MMHomePageCollectionGoodCell.self, forCellWithReuseIdentifier: MMHomePageCollectionGoodCell.reuseId)
+        _v.register(MMHomePageBannerCollectionCell.self, forCellWithReuseIdentifier: MMHomePageBannerCollectionCell.reuseId)
         return _v
     }()
     
     
     private var dataLists = [MMHomeGoodItemModel]()
-    
+    private var bannerLists = [MMHomeIconBannerModel]()
     private var currentPage: Int = 1
-    
     private var currentCid: Int = -1
-    
     private var listViewDidScrollCallback: ((UIScrollView) -> ())?
 }
 
@@ -113,26 +114,59 @@ class MMHomePageController: MMBaseViewController {
 extension MMHomePageController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.dataLists.count
+        return self.bannerLists.count > 0 ? (self.dataLists.count + 1) : self.dataLists.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MMHomePageCollectionGoodCell", for: indexPath) as! MMHomePageCollectionGoodCell
-        
-        if self.dataLists.count > indexPath.row {
-            cell.cellItemData(itemModel: self.dataLists[indexPath.row])
+        if self.bannerLists.count > 0 && indexPath.row == 0 {
+            let bannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: MMHomePageBannerCollectionCell.reuseId, for: indexPath) as! MMHomePageBannerCollectionCell
+            
+            bannerCell.setRecomBannerItem(list: self.bannerLists)
+            
+            return bannerCell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MMHomePageCollectionGoodCell.reuseId, for: indexPath) as! MMHomePageCollectionGoodCell
+            
+            if self.bannerLists.count > 0 {
+                if self.dataLists.count > (indexPath.row - 1) {
+                    cell.cellItemData(itemModel: self.dataLists[indexPath.row - 1])
+                }
+            } else {
+                if self.dataLists.count > indexPath.row {
+                    cell.cellItemData(itemModel: self.dataLists[indexPath.row])
+                }
+            }
+            return cell
         }
-        
-        return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(MMGoodsDetailsTbController(goodId: self.dataLists[indexPath.row].goodsId ?? ""), animated: true)
+        if self.bannerLists.count > 0 {
+            if self.dataLists.count > (indexPath.row - 1) {
+                self.navigationController?.pushViewController(MMGoodsDetailsTbController(goodId: self.dataLists[indexPath.row].goodsId ?? ""), animated: true)
+            }
+        } else {
+            if self.dataLists.count > indexPath.row {
+                self.navigationController?.pushViewController(MMGoodsDetailsTbController(goodId: self.dataLists[indexPath.row].goodsId ?? ""), animated: true)
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.width - 36)*0.5, height: (collectionView.width - 36)*0.75)
+        let cellWidth = (collectionView.width - STtrans(36))*0.5
+        return CGSize(width: cellWidth, height: cellWidth*(295.28/179.41))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return STtrans(6)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return STtrans(12)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: STtrans(6), left: STtrans(12), bottom: 0, right: STtrans(12))
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

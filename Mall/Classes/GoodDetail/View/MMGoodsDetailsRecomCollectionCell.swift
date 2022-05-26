@@ -30,7 +30,7 @@ class MMGoodsDetailsRecomCollectionCell: UICollectionViewCell {
         
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.iconImageV.snp.bottom).offset(2)
+            make.top.equalTo(self.iconImageV.snp.bottom).offset(STtrans(3))
             make.left.equalTo(self.iconImageV.snp.left).offset(STtrans(6))
             make.right.equalTo(self.iconImageV.snp.right).offset(-STtrans(6))
         }
@@ -38,13 +38,13 @@ class MMGoodsDetailsRecomCollectionCell: UICollectionViewCell {
         self.contentView.addSubview(self.priceLabel)
         self.priceLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.titleLabel.snp.left)
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(2)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(STtrans(5))
         }
         
         self.contentView.addSubview(self.couponTitleLabel)
         self.couponTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.iconImageV.snp.left).offset(STtrans(6))
-            make.top.equalTo(self.priceLabel.snp.bottom).offset(STtrans(2))
+            make.top.equalTo(self.priceLabel.snp.bottom).offset(STtrans(5))
         }
         
         self.contentView.addSubview(self.couponLabel)
@@ -58,7 +58,7 @@ class MMGoodsDetailsRecomCollectionCell: UICollectionViewCell {
         self.contentView.addSubview(self.sallLabel)
         self.sallLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.couponTitleLabel.snp.left)
-            make.top.equalTo(self.couponTitleLabel.snp.bottom).offset(STtrans(2))
+            make.top.equalTo(self.couponTitleLabel.snp.bottom).offset(STtrans(5))
         }
         
     }

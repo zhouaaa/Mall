@@ -32,22 +32,47 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
     }
     override func bind() {
         
+        self.listPageView.mainTableView.MMHead = RefreshHeader{ [weak self] in
+            guard self != nil else { return }
+            self?.handleHomeMainData()
+        }
         
+        self.listPageView.mainTableView.MMHead?.beginRefreshing()
+        
+    }
+
+    
+    private func handleHomeMainData() {
+        
+        /// 首页菜单
         _ = kHomeApiProvider.yn_request(.HomeCmsV2Ads(siteId:"369616", temp_id: "2", page: 1)).subscribe(onNext: { (json) in
+            self.listPageView.mainTableView.endRefreshing()
             let result = MMHomeMainModel.deserialize(from: json)
             
             self.homeMainModel = result ?? MMHomeMainModel()
             var menu = [MMHomeIconBannerModel]()
             menu.append(contentsOf: result?.icons ?? [MMHomeIconBannerModel]())
             menu.append(contentsOf: result?.small_icons ?? [MMHomeIconBannerModel]())
-            self.headView.reloadMenuData(listData: menu)
             self.menuItems = menu
+            self.headView.reloadMenuData(listData: menu)
+            self.listPageView.reloadData()
         }, onError: { error in
-            
+            self.listPageView.mainTableView.endRefreshing()
+        })
+
+        /// 跑马灯抡博
+        _ = kHomeApiProvider.yn_request(.HomelistTipOff(pageId: 1)).subscribe(onNext: { [weak self] (json) in
+            self?.listPageView.mainTableView.endRefreshing()
+            guard let _result = MMPreferentMainListModel.deserialize(from: json) else { return }
+            NSLog(json)
+            self?.marqueeItems = _result.list ?? [MMPreferentMainModel]()
+            self?.headView.reloadMarqueeBannerData(listData: self?.marqueeItems ?? [MMPreferentMainModel]())
+        }, onError: { error in
+            self.listPageView.mainTableView.endRefreshing()
         })
         
+        
     }
-
     
     /// Menu Click
     func homeMainViewCollectionView(_ collectionView: MMHomeMenusView, didSelectItemAt indexPath: IndexPath) {
@@ -59,11 +84,12 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
     }
     
     private var menuItems = [MMHomeIconBannerModel]()
+    private var marqueeItems = [MMPreferentMainModel]()
     
     private var homeMainModel: MMHomeMainModel?
     
-    private lazy var listPageView: JXPagingListRefreshView = {
-        let _v = JXPagingListRefreshView(delegate: self, listContainerType: .scrollView)
+    private lazy var listPageView: JXPagingView = {
+        let _v = JXPagingView(delegate: self, listContainerType: .scrollView)
         _v.listContainerView.isCategoryNestPagingEnabled = true
        _v.mainTableView.gestureDelegate = self
        _v.mainTableView.backgroundColor = UIColor.clear
@@ -102,9 +128,19 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
       return _data
    }()
     
-    private var tableHeaderViewHeight: Int = Int(400.0)
+    private var tableHeaderViewHeight: Int {
+        get {
+            let cellMenuHeight = (kScreenWidth - STtrans(24)) * (62.4/184.6) + STtrans(28)
+            
+            let cellMarqueHeight = STtrans(58)
+            
+            let cellViewHeight = (kScreenWidth - STtrans(30)) * (89/184.6) + STtrans(12)
+            
+            return Int(cellMenuHeight + cellMarqueHeight + cellViewHeight)
+        }
+    }
     
-    private var headerInSectionHeight: Int = Int(65.0)
+    private var headerInSectionHeight: Int = Int(STtrans(65))
     
     private lazy var headView: MMHomeMainView = {
         let _v = MMHomeMainView(frame: CGRect(x: 0, y: 0, width: Int(kScreenWidth), height: tableHeaderViewHeight))

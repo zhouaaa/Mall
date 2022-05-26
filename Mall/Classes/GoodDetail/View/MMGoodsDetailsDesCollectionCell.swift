@@ -32,7 +32,7 @@ class MMGoodsDetailsDesCollectionCell: UICollectionViewCell {
         
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.iconImageV.snp.right).offset(4)
+            make.left.equalTo(self.iconImageV.snp.right).offset(STtrans(6))
             make.centerY.equalTo(self.iconImageV.snp.centerY)
         }
         

@@ -164,7 +164,7 @@ extension MoyaProvider {
                     else {
                         var _json = json
                         _json["_headers"] = headers
-                        debugPrint("get domain error:", json.dictionaryObject ?? [:])
+                        NSLog("get domain error:", json.dictionaryObject ?? [:])
                         // 请求成功, 出现业务错误
                         let domain = json["msg"].string ?? kDefaultErrorMessage
                         let userInfo = _json.dictionaryObject

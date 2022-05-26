@@ -79,7 +79,7 @@ class MMHomeCouponPageController: MMBaseViewController {
          _tab.backgroundColor = UIColor.clear
          _tab.delegate = self
          _tab.dataSource = self
-         _tab.register(MMHomeCouponPageTableCell.self, forCellReuseIdentifier: "MMHomeCouponPageTableCell")
+        _tab.register(MMHomeCouponPageTableCell.self, forCellReuseIdentifier: MMHomeCouponPageTableCell.reuseId)
          _tab.estimatedRowHeight = 120
          _tab.rowHeight = UITableView.automaticDimension
          _tab.showsVerticalScrollIndicator = false
@@ -108,7 +108,7 @@ extension MMHomeCouponPageController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MMHomeCouponPageTableCell", for: indexPath) as! MMHomeCouponPageTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MMHomeCouponPageTableCell.reuseId, for: indexPath) as! MMHomeCouponPageTableCell
         
         if self.listDatas.count > indexPath.row {
             cell.handleCellData(itemModel: self.listDatas[indexPath.row])

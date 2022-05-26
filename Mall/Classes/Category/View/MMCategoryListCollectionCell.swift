@@ -103,7 +103,7 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
         } else {
             self.goodImageV.setImageWith(URL(string: cellData.cover ?? ""), placeholder: kGlobalDefultImage)
             self.sallLabel.text = "已售: \(cellData.sales ?? 0)"
-            priceString = "¥: \(cellData.price ?? 0.00)"
+            priceString = "¥: \(cellData.price)"
         }
          
         let attributedPriceText = NSMutableAttributedString(string: priceString, attributes: [.font: UIFont.df_getCustomFontType(with: .Medium, fontSize: 18)!, .foregroundColor: UIColor.hexColor(0xf21724)])
