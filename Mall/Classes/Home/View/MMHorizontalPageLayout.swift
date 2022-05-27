@@ -9,18 +9,7 @@ import UIKit
 
 class MMHorizontalPageLayout: UICollectionViewFlowLayout {
     
-    private var itemWidth: CGFloat {
-        get {
-            return CGFloat(kScreenWidth / 5) //item 宽度
-        }
-    }
     
-    private var itemHeight: CGFloat {
-        get {
-            return CGFloat(self.itemWidth * 1.17) //item 高度
-        }
-    }
-        
     /** 一行中cell的个数*/
     public var itemCountPerRow: Int!
         

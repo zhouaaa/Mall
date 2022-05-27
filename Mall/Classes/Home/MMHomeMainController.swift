@@ -15,8 +15,9 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = ""
+        self.hx_barStyle = .black
         
-
         
     }
     
@@ -44,21 +45,14 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
     
     private func handleHomeMainData() {
         
+        self.hx_backgroundColor = UIColor.hexRGBAColor(MMHomeConfigService.shared.homeConfig.styles?.top_entrance?.bg_color ?? "rgba(255,255,255,1)")
+        
         /// 首页菜单
-        _ = kHomeApiProvider.yn_request(.HomeCmsV2Ads(siteId:"369616", temp_id: "2", page: 1)).subscribe(onNext: { (json) in
-            self.listPageView.mainTableView.endRefreshing()
-            let result = MMHomeMainModel.deserialize(from: json)
-            
-            self.homeMainModel = result ?? MMHomeMainModel()
-            var menu = [MMHomeIconBannerModel]()
-            menu.append(contentsOf: result?.icons ?? [MMHomeIconBannerModel]())
-            menu.append(contentsOf: result?.small_icons ?? [MMHomeIconBannerModel]())
-            self.menuItems = menu
-            self.headView.reloadMenuData(listData: menu)
-            self.listPageView.reloadData()
-        }, onError: { error in
-            self.listPageView.mainTableView.endRefreshing()
-        })
+        var menu = [MMHomeIconBannerModel]()
+        menu.append(contentsOf: MMHomeConfigService.shared.homeConfig.icons ?? [MMHomeIconBannerModel]())
+        menu.append(contentsOf: MMHomeConfigService.shared.homeConfig.small_icons ?? [MMHomeIconBannerModel]())
+        self.menuItems = menu
+        self.headView.reloadMenuData(listData: menu)
 
         /// 跑马灯抡博
         _ = kHomeApiProvider.yn_request(.HomelistTipOff(pageId: 1)).subscribe(onNext: { [weak self] (json) in
@@ -71,7 +65,20 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
             self.listPageView.mainTableView.endRefreshing()
         })
         
+        /// 首页排行榜
+        _ = kHomeApiProvider.yn_request(.HomeRankingList).subscribe(onNext: { (json) in
+            NSLog("首页排行榜==========\(json)")
+        }, onError: { (error) in
+            
+        })
         
+        /// 首页秒杀
+        _ = kHomeApiProvider.yn_request(.HomeDdqGoodsList).subscribe(onNext: { (json) in
+         NSLog("首页秒杀==========\(json)")
+        }, onError: { (error) in
+            
+        })
+    
     }
     
     /// Menu Click
@@ -85,8 +92,6 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
     
     private var menuItems = [MMHomeIconBannerModel]()
     private var marqueeItems = [MMPreferentMainModel]()
-    
-    private var homeMainModel: MMHomeMainModel?
     
     private lazy var listPageView: JXPagingView = {
         let _v = JXPagingView(delegate: self, listContainerType: .scrollView)
@@ -132,7 +137,7 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
         get {
             let cellMenuHeight = (kScreenWidth - STtrans(24)) * (62.4/184.6) + STtrans(28)
             
-            let cellMarqueHeight = STtrans(58)
+            let cellMarqueHeight = STtrans(66)
             
             let cellViewHeight = (kScreenWidth - STtrans(30)) * (89/184.6) + STtrans(12)
             
@@ -143,7 +148,7 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
     private var headerInSectionHeight: Int = Int(STtrans(65))
     
     private lazy var headView: MMHomeMainView = {
-        let _v = MMHomeMainView(frame: CGRect(x: 0, y: 0, width: Int(kScreenWidth), height: tableHeaderViewHeight))
+        let _v = MMHomeMainView()
         _v.delegate = self
         return _v
     }()

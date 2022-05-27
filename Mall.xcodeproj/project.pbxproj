@@ -64,6 +64,8 @@
 		E78BDF33283E232F00BE5EFE /* MMGoodsDetailsPriceCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78BDF32283E232F00BE5EFE /* MMGoodsDetailsPriceCollectionCell.swift */; };
 		E78E5C32283F5280001F03F7 /* MMHomePageBannerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5C31283F5280001F03F7 /* MMHomePageBannerCollectionCell.swift */; };
 		E78E5C34283F5AF1001F03F7 /* MMHomeMarqueeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5C33283F5AF1001F03F7 /* MMHomeMarqueeView.swift */; };
+		E795ADD528406F0F00E73B09 /* MMHomeConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E795ADD428406F0F00E73B09 /* MMHomeConfigService.swift */; };
+		E795ADD72840B04800E73B09 /* MMHomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E795ADD62840B04800E73B09 /* MMHomeSearchView.swift */; };
 		E798769D27F5A32900842169 /* MMCategoryListMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E798769C27F5A32900842169 /* MMCategoryListMainController.swift */; };
 		E798769F27F5A56500842169 /* MMCategoryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E798769E27F5A56500842169 /* MMCategoryListController.swift */; };
 		E79876A327F5B6EA00842169 /* MMCategorieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79876A127F5B6EA00842169 /* MMCategorieCollectionCell.swift */; };
@@ -147,6 +149,8 @@
 		E78BDF32283E232F00BE5EFE /* MMGoodsDetailsPriceCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMGoodsDetailsPriceCollectionCell.swift; sourceTree = "<group>"; };
 		E78E5C31283F5280001F03F7 /* MMHomePageBannerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomePageBannerCollectionCell.swift; sourceTree = "<group>"; };
 		E78E5C33283F5AF1001F03F7 /* MMHomeMarqueeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeMarqueeView.swift; sourceTree = "<group>"; };
+		E795ADD428406F0F00E73B09 /* MMHomeConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeConfigService.swift; sourceTree = "<group>"; };
+		E795ADD62840B04800E73B09 /* MMHomeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeSearchView.swift; sourceTree = "<group>"; };
 		E798769C27F5A32900842169 /* MMCategoryListMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMCategoryListMainController.swift; sourceTree = "<group>"; };
 		E798769E27F5A56500842169 /* MMCategoryListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMCategoryListController.swift; sourceTree = "<group>"; };
 		E79876A127F5B6EA00842169 /* MMCategorieCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMCategorieCollectionCell.swift; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 				E73134882804077B00C725A1 /* MMHorizontalPageLayout.swift */,
 				E731348A2804093C00C725A1 /* MMHomeMenusView.swift */,
 				E78E5C33283F5AF1001F03F7 /* MMHomeMarqueeView.swift */,
+				E795ADD62840B04800E73B09 /* MMHomeSearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 		E748FC6927BC90940082E488 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E795ADD328406EF700E73B09 /* Service */,
 				E7ADC241282DF1480092C179 /* LargeCoupon */,
 				E73A8C9B282D00690075BEEE /* Tool */,
 				E73134832803D4AB00C725A1 /* View */,
@@ -450,6 +456,14 @@
 				E73A8CA2282D17FA0075BEEE /* MMHomeGoodListModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E795ADD328406EF700E73B09 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E795ADD428406F0F00E73B09 /* MMHomeConfigService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		E79876A027F5B6EA00842169 /* View */ = {
@@ -661,8 +675,10 @@
 				E7AB435E280820C200D4CE21 /* MMPreferentMainListModel.swift in Sources */,
 				E76E420C27C6132800BBC29A /* MMNineMainController.swift in Sources */,
 				E78BDF2D283DDC6400BE5EFE /* String+MMExtension.swift in Sources */,
+				E795ADD72840B04800E73B09 /* MMHomeSearchView.swift in Sources */,
 				E74E91FE28339A1F0036E293 /* MMNineRecomReusableView.swift in Sources */,
 				E78BDF33283E232F00BE5EFE /* MMGoodsDetailsPriceCollectionCell.swift in Sources */,
+				E795ADD528406F0F00E73B09 /* MMHomeConfigService.swift in Sources */,
 				E73134852803D4C600C725A1 /* MMHomeMainView.swift in Sources */,
 				E78BDF27283DC94E00BE5EFE /* MMGoodsDetailsPicCollectionCell.swift in Sources */,
 				E7ADC249282E3BB50092C179 /* MMHomeCouponPageController.swift in Sources */,

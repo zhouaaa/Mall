@@ -30,24 +30,22 @@ class MMHomeMarqueeView: UIView, SDCycleScrollViewDelegate {
             make.left.equalTo(self.snp.left).offset(STtrans(12))
             make.centerY.equalTo(self.snp.centerY)
             make.width.equalTo(STtrans(36.38))
-            make.height.equalTo(STtrans(15.59))
         }
         
    
         self.bannerView.scrollDirection = .vertical
         self.bannerView.autoScrollTimeInterval = 3.0
         self.bannerView.onlyDisplayText = true
+        self.bannerView.disableScrollGesture()
         self.bannerView.titleLabelTextFont = UIFont.df_getCustomFontType(with: .Regular, fontSize: 14)
         self.bannerView.titleLabelTextColor = UIColor.hexColor(0x333333)
-        self.bannerView.titleLabelHeight = STtrans(30)
         self.bannerView.titleLabelTextAlignment = .left
         self.bannerView.titleLabelBackgroundColor = UIColor.clear
-        self.bannerView.titlesGroup = ["sfsfssgsgsgdsgdgdsgsg","1222222222"]
         self.addSubview(self.bannerView)
         self.bannerView.snp.makeConstraints { (make) in
             make.left.equalTo(self.iconImageV.snp.right).offset(STtrans(4))
             make.right.equalTo(self.snp.right).offset(-STtrans(12))
-            make.centerY.equalTo(self.iconImageV.snp.centerY)
+            make.centerY.equalTo(self.snp.centerY)
             make.height.equalTo(floor(STtrans(30)))
         }
         

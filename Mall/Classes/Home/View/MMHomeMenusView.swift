@@ -51,20 +51,24 @@ class MMHomeMenusView: UIView {
     }
     
     func reloadMenuColllectionView(lists:[MMHomeIconBannerModel]) {
+       
         self.menuListsModel = lists
         self.menuCollectionView.reloadData()
+        
+        self.backgroundColor = UIColor.hexRGBAColor(MMHomeConfigService.shared.homeConfig.styles?.icons?.bg_color ?? "rgba(255,255,255,1)")
         
         let _count = lists.count
         self.pageControl.numberOfPages = Int(ceilf(Float(_count)/10))
         self.pageControl.currentPage = 0
         self.pageControl.isHidden = _count < 10
-        self.menuCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
-        
-        self.layoutSubviews()
+//        self.menuCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+    
     }
     
     private lazy var menuCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = MMHorizontalPageLayout()
+        layout.itemCountPerRow = 5
+        layout.rowCount = 2
         layout.scrollDirection = .horizontal
         let _v = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         _v.backgroundColor = UIColor.clear
@@ -155,7 +159,8 @@ class MMHomeMenusCollectionCell: UICollectionViewCell {
         self.contentView.addSubview(self.iconImageV)
         self.iconImageV.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.snp.centerX)
-            make.width.height.equalTo(self.contentView.snp.width).multipliedBy(52.0/73.84)
+            //make.width.height.equalTo(self.contentView.snp.width).multipliedBy(52.0/73.84)
+            make.width.height.equalTo(STtrans(52))
         }
         
         self.contentView.addSubview(self.titleLabel)
@@ -183,8 +188,9 @@ class MMHomeMenusCollectionCell: UICollectionViewCell {
         let _lab = UILabel()
         _lab.font = UIFont.df_getCustomFontType(with: .DefaultFont, fontSize: 10)
         _lab.textAlignment = .center
-        _lab.textColor = UIColor.hexColor(0x333333)
-        _lab.text = "--"
+        _lab.textColor =
+        MMHomeConfigService.shared.homeConfig.styles?.icons?.font_color?.count ?? 0 > 0 ? UIColor.hexRGBAColor(MMHomeConfigService.shared.homeConfig.styles?.icons?.font_color ?? "") : UIColor.hexColor(0x333333)
+        _lab.text = ""
         return _lab
     }()
 }

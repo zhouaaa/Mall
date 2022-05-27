@@ -53,9 +53,10 @@ class MMHomeMainView: UIView {
         self.marqueeView.snp.makeConstraints { (make) in
             make.left.equalTo(self.snp.left).offset(STtrans(12))
             make.right.equalTo(self.snp.right).offset(-STtrans(12))
-            make.top.equalTo(self.menuView.snp.bottom).offset(STtrans(4))
+            make.top.equalTo(self.menuView.snp.bottom).offset(STtrans(12))
             make.height.equalTo(STtrans(50))
         }
+        
         
         self.addSubview(self.leftView)
         self.leftView.snp.makeConstraints { (make) in
@@ -64,6 +65,7 @@ class MMHomeMainView: UIView {
             make.top.equalTo(self.marqueeView.snp.bottom).offset(STtrans(6))
             make.bottom.equalTo(self.snp.bottom).offset(-STtrans(6))
         }
+        
         
         self.addSubview(self.rightView)
         self.rightView.snp.makeConstraints { (make) in
@@ -115,6 +117,7 @@ class MMHomeMainView: UIView {
             make.centerY.equalTo(self.titleRightLabel.snp.centerY)
             make.height.equalTo(STtrans(14.55))
         }
+         
         
         
     }
@@ -125,7 +128,9 @@ class MMHomeMainView: UIView {
     
     
     func reloadMenuData(listData: [MMHomeIconBannerModel]) {
+        
         self.menuView.reloadMenuColllectionView(lists: listData)
+        
     }
     
     func reloadMarqueeBannerData(listData: [MMPreferentMainModel]) {
@@ -133,7 +138,7 @@ class MMHomeMainView: UIView {
     }
     
     private lazy var menuView: MMHomeMenusView = {
-        let _v = MMHomeMenusView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: menuHeight))
+        let _v = MMHomeMenusView()
         _v.delegate = self
         return _v
     }()

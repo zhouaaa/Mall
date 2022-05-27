@@ -41,6 +41,16 @@ extension UIColor {
         return UIColor(red: (CGFloat)((hexValue & 0xFF0000) >> 16) / 255.0, green: (CGFloat)((hexValue & 0xFF00) >> 8) / 255.0, blue: (CGFloat)(hexValue & 0xFF) / 255.0, alpha: alpha)
     }
     
+    static func hexRGBAColor(_ hexRGBA: String) -> UIColor {
+        let rgb = hexRGBA.replacingOccurrences(of: "rgba(", with: "")
+        let rgbString = rgb.replacingOccurrences(of: ")", with: "")
+        let rgbLists = rgbString.components(separatedBy: ",")
+        
+        let r = Double(rgbLists[0]) ?? 255.0
+        let g = Double(rgbLists[1]) ?? 255.0
+        let b = Double(rgbLists[2]) ?? 255.0
+        return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)
+    }
 }
 
 
