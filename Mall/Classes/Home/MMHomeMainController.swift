@@ -45,14 +45,35 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
     
     private func handleHomeMainData() {
         
-        self.hx_backgroundColor = UIColor.hexRGBAColor(MMHomeConfigService.shared.homeConfig.styles?.top_entrance?.bg_color ?? "rgba(255,255,255,1)")
         
-        /// 首页菜单
-        var menu = [MMHomeIconBannerModel]()
-        menu.append(contentsOf: MMHomeConfigService.shared.homeConfig.icons ?? [MMHomeIconBannerModel]())
-        menu.append(contentsOf: MMHomeConfigService.shared.homeConfig.small_icons ?? [MMHomeIconBannerModel]())
-        self.menuItems = menu
-        self.headView.reloadMenuData(listData: menu)
+        _ = kHomeApiProvider.yn_request(.HomeCmsV2Ads(siteId:"369616", temp_id: "2", page: 1)).subscribe(onNext: { [weak self] (json) in
+            self?.listPageView.mainTableView.endRefreshing()
+            
+            let result = MMHomeMainModel.deserialize(from: json) ?? MMHomeMainModel()
+            MMHomeConfigService.shared.handleSubscribeHomeConfig(json: result)
+            
+            self?.hx_backgroundColor = UIColor.hexRGBAColor(result.styles?.top_entrance?.bg_color ?? "rgba(255,255,255,1)")
+            
+            /// 首页菜单
+            var menu = [MMHomeIconBannerModel]()
+            menu.append(contentsOf: result.icons ?? [MMHomeIconBannerModel]())
+            menu.append(contentsOf: result.small_icons ?? [MMHomeIconBannerModel]())
+            self?.menuItems = menu
+            self?.headView.reloadMenuData(listData: menu)
+            
+        }, onError: { [weak self] error in
+            self?.listPageView.mainTableView.endRefreshing()
+            self?.hx_backgroundColor = UIColor.hexRGBAColor(MMHomeConfigService.shared.homeConfig.styles?.top_entrance?.bg_color ?? "rgba(255,255,255,1)")
+            
+            /// 首页菜单
+            var menu = [MMHomeIconBannerModel]()
+            menu.append(contentsOf: MMHomeConfigService.shared.homeConfig.icons ?? [MMHomeIconBannerModel]())
+            menu.append(contentsOf: MMHomeConfigService.shared.homeConfig.small_icons ?? [MMHomeIconBannerModel]())
+            self?.menuItems = menu
+            self?.headView.reloadMenuData(listData: menu)
+        })
+        
+       
 
         /// 跑马灯抡博
         _ = kHomeApiProvider.yn_request(.HomelistTipOff(pageId: 1)).subscribe(onNext: { [weak self] (json) in
@@ -67,9 +88,10 @@ class MMHomeMainController: MMBaseViewController, MMHomeMainViewDelegate {
         
         /// 首页排行榜
         _ = kHomeApiProvider.yn_request(.HomeRankingList).subscribe(onNext: { (json) in
-            NSLog("首页排行榜==========\(json)")
+            let result = json.arrayValue.compactMap({MMHomeRankModel.deserialize(from: $0)})
+            self.headView.reloadRankListsData(listData: result)
         }, onError: { (error) in
-            
+            self.listPageView.mainTableView.endRefreshing()
         })
         
         /// 首页秒杀

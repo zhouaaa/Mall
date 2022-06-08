@@ -175,6 +175,7 @@ class MMHomeMenusCollectionCell: UICollectionViewCell {
     func setMenuCellData(cellData: MMHomeIconBannerModel) {
         self.titleLabel.text = "\(cellData.title ?? "")"
         self.iconImageV.sd_setImage(with: URL(string: cellData.img ?? ""), placeholderImage: kGlobalDefultImage)
+        self.titleLabel.textColor = MMHomeConfigService.shared.homeConfig.styles?.icons?.font_color?.count ?? 0 > 0 ? UIColor.hexRGBAColor(MMHomeConfigService.shared.homeConfig.styles?.icons?.font_color ?? "") : UIColor.hexColor(0x333333)
     }
     
     private lazy var iconImageV: UIImageView = {

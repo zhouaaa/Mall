@@ -33,6 +33,6 @@ target 'Mall' do
   pod 'YYKit'
   #图片浏览器
   pod 'Lantern', '1.1.2'
-  
+  pod 'Toast-Swift', '~> 5.0.1'
   
 end

@@ -23,6 +23,7 @@ class MMHomePageBannerCollectionCell: UICollectionViewCell, SDCycleScrollViewDel
     
     private func setUI() {
         
+        let cellWidth = (kScreenWidth - STtrans(36))*0.5
         self.bannerView.infiniteLoop = true
         self.bannerView.autoScrollTimeInterval = 3
         self.bannerView.autoScroll  = true
@@ -30,7 +31,9 @@ class MMHomePageBannerCollectionCell: UICollectionViewCell, SDCycleScrollViewDel
         self.bannerView.currentPageDotColor = UIColor.hexColor(0xee0a24)
         self.contentView.addSubview(self.bannerView)
         self.bannerView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+            make.centerX.equalTo(self.contentView.snp.centerX)
+            make.width.equalTo(floor(cellWidth))
         }
     }
     

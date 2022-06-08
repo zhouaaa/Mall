@@ -46,6 +46,12 @@ extension MMHomeConfigService {
         }
     }
     
+    func handleSubscribeHomeConfig(json: MMHomeMainModel) {
+        self.homeConfig = json
+        self.isLoadParamSuccess = true
+        _didUpdateConfig.onNext(json)
+    }
+    
 }
 
 extension Reactive where Base: MMHomeConfigService {
