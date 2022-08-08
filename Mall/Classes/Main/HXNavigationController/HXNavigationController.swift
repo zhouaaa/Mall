@@ -41,9 +41,7 @@ class HXNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate = self
-        interactivePopGestureRecognizer?.delegate = self
-        interactivePopGestureRecognizer?.addTarget(self, action: #selector(handleinteractivePopGesture(gesture:)))
+    
         setupNavigationBar()
     }
     
@@ -245,26 +243,6 @@ extension HXNavigationController: UINavigationControllerDelegate {
             clearTempFakeBar()
         }
         poppingVC = nil
-    }
-    
-}
-
-// MARK: -  UIGestureRecognizerDelegate
-extension HXNavigationController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if viewControllers.count <= 1 {
-            return false
-        }
-        if let topViewController = topViewController {
-            return topViewController.hx_enablePopGesture
-        }
-        return true
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        return gestureRecognizer.isKind(of: UIPanGestureRecognizer.self) && otherGestureRecognizer.isKind(of: UIPanGestureRecognizer.self) 
     }
     
 }

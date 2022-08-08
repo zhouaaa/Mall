@@ -24,7 +24,6 @@ class MMHomeSpikeView: UIView {
         self.titleRightLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.snp.left).offset(STtrans(6))
             make.top.equalTo(self.snp.top).offset(STtrans(10))
-            make.width.equalTo("限时秒杀".width(for: UIFont.boldSystemFont(ofSize: 15)))
             make.height.equalTo(STtrans(18))
         }
         

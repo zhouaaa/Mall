@@ -75,7 +75,7 @@ class MMNineRecomReusableView: UICollectionReusableView {
     
    private lazy var recomImagV: UIImageView = {
         let _v = UIImageView()
-        _v.setImageWith(URL(string: "https://sr.ffquan.cn/dtk_www/20210226/c0sbpgn6vrkfhsos6qvg0.png"), placeholder: kGlobalDefultImage)
+        _v.setImageWithURL("https://sr.ffquan.cn/dtk_www/20210226/c0sbpgn6vrkfhsos6qvg0.png")
         return _v
     }()
     

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import YYKit
 
 class MMPreferentMainTableCell: UITableViewCell {
 
@@ -107,9 +106,8 @@ class MMPreferentMainTableCell: UITableViewCell {
             }
             
             let attribbutes = NSMutableAttributedString(string: urlsString)
-            attribbutes.font = UIFont.df_getCustomFontType(with: .Regular, fontSize: 16)
-            attribbutes.lineSpacing = 4;
-            attribbutes.color = UIColor.hexColor(0x666666)
+            
+            /*
             
             if urls.count > 0 {
                 let nsString = NSString(string: attribbutes.string)
@@ -123,6 +121,7 @@ class MMPreferentMainTableCell: UITableViewCell {
                     attribbutes.setTextHighlight(hightText, range: nsString.range(of: keyVal))
                 }
             }
+             */
             self.contentLabel.attributedText = attribbutes
         }
     }
@@ -155,16 +154,14 @@ class MMPreferentMainTableCell: UITableViewCell {
         return _lab
     }()
     
-    private lazy var contentLabel: YYLabel = {
-        let _lab = YYLabel()
+    private lazy var contentLabel: MMPaddingLabel = {
+        let _lab = MMPaddingLabel()
         _lab.numberOfLines = 0
         _lab.backgroundColor = .white
         _lab.lineBreakMode = .byWordWrapping
-        _lab.textContainerInset = UIEdgeInsets.init(top: 5, left: 12, bottom: 10, right: 12)
+        _lab.textInsets = UIEdgeInsets.init(top: 5, left: 12, bottom: 10, right: 12)
         _lab.preferredMaxLayoutWidth = kScreenWidth - 120
-        _lab.ignoreCommonProperties = false
         _lab.textAlignment = .left
-        _lab.textVerticalAlignment = .top
         _lab.font = UIFont.df_getCustomFontType(with: .Regular, fontSize: 17)
         _lab.lineBreakMode = .byCharWrapping
         return _lab

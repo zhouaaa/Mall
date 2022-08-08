@@ -7,7 +7,6 @@
 
 import UIKit
 import MJRefresh
-import YYKit
 
 extension UIScrollView {
     

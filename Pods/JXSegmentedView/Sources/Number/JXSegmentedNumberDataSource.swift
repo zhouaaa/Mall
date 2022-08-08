@@ -49,7 +49,6 @@ open class JXSegmentedNumberDataSource: JXSegmentedTitleDataSource {
         itemModel.numberOffset = numberOffset
         itemModel.numberWidthIncrement = numberWidthIncrement
         itemModel.numberHeight = numberHeight
-        itemModel.numberFont = numberFont
     }
 
     //MARK: - JXSegmentedViewDataSource

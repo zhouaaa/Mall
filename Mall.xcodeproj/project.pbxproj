@@ -89,6 +89,8 @@
 		E7AE280827CDCDD2000368C1 /* MMBouncesContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE280727CDCDD2000368C1 /* MMBouncesContentView.swift */; };
 		E7AE280A27CE0F56000368C1 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE280927CE0F56000368C1 /* Constant.swift */; };
 		E7AE280C27CE11B1000368C1 /* MMHomePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE280B27CE11B1000368C1 /* MMHomePageController.swift */; };
+		E7E23BA9289CCD4D00E80FA5 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E23BA8289CCD4D00E80FA5 /* UIImageView+Kingfisher.swift */; };
+		E7E23BAB289CF41900E80FA5 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E23BAA289CF41900E80FA5 /* NSMutableAttributedString+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +180,9 @@
 		E7AE280727CDCDD2000368C1 /* MMBouncesContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMBouncesContentView.swift; sourceTree = "<group>"; };
 		E7AE280927CE0F56000368C1 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		E7AE280B27CE11B1000368C1 /* MMHomePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomePageController.swift; sourceTree = "<group>"; };
+		E7E23BA7289CC94400E80FA5 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		E7E23BA8289CCD4D00E80FA5 /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
+		E7E23BAA289CF41900E80FA5 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +301,7 @@
 		E748FC6727BC90940082E488 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E7E23BA6289CC93200E80FA5 /* GlobalConstants */,
 				E72D04902834E730003B4FE5 /* GoodDetail */,
 				E76E421C27C62EC000BBC29A /* API */,
 				E76E420D27C6152500BBC29A /* Other */,
@@ -424,6 +430,8 @@
 				E78BDF28283DD3DE00BE5EFE /* MMJsonUtil.swift */,
 				E78BDF2A283DD9CB00BE5EFE /* MMCommonUtil.swift */,
 				E78BDF2C283DDC6400BE5EFE /* String+MMExtension.swift */,
+				E7E23BA8289CCD4D00E80FA5 /* UIImageView+Kingfisher.swift */,
+				E7E23BAA289CF41900E80FA5 /* NSMutableAttributedString+Extension.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -514,6 +522,14 @@
 				E7ADC24E282E6B390092C179 /* MMHomeCouponPageTableCell.swift */,
 			);
 			path = LargeCoupon;
+			sourceTree = "<group>";
+		};
+		E7E23BA6289CC93200E80FA5 /* GlobalConstants */ = {
+			isa = PBXGroup;
+			children = (
+				E7E23BA7289CC94400E80FA5 /* PrefixHeader.pch */,
+			);
+			path = GlobalConstants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -666,6 +682,7 @@
 				E72D04982834ECB1003B4FE5 /* MMGoodsDetailsCollectionBannerCell.swift in Sources */,
 				E73A8CA3282D17FA0075BEEE /* MMHomeGoodListModel.swift in Sources */,
 				E7ADC24F282E6B390092C179 /* MMHomeCouponPageTableCell.swift in Sources */,
+				E7E23BAB289CF41900E80FA5 /* NSMutableAttributedString+Extension.swift in Sources */,
 				E78E5C32283F5280001F03F7 /* MMHomePageBannerCollectionCell.swift in Sources */,
 				E79876A427F5B6EA00842169 /* MMCategorieTableLeftCell.swift in Sources */,
 				E71F0A14282BA2A7004C5A55 /* MMBaseViewController.swift in Sources */,
@@ -703,6 +720,7 @@
 				E73A8C98282CAA070075BEEE /* MMNinePageCollectionGoodCell.swift in Sources */,
 				E78BDF31283E171100BE5EFE /* MMGoodsDetailsShopCollectionCell.swift in Sources */,
 				E798769D27F5A32900842169 /* MMCategoryListMainController.swift in Sources */,
+				E7E23BA9289CCD4D00E80FA5 /* UIImageView+Kingfisher.swift in Sources */,
 				E73A8C9F282D00CA0075BEEE /* MMHomeSegmentedTitleDataSource.swift in Sources */,
 				E7333C41281168E10031558F /* MMNineCateItemModel.swift in Sources */,
 				E76E420A27C60C8D00BBC29A /* MMBaseNavigationController.swift in Sources */,
@@ -778,7 +796,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -833,7 +851,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -853,13 +871,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 89ZCQQ3S27;
+				GCC_PREFIX_HEADER = /Users/qianduan/Desktop/Mall/Mall/Classes/GlobalConstants/PrefixHeader.pch;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mall/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -884,13 +903,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 89ZCQQ3S27;
+				GCC_PREFIX_HEADER = /Users/qianduan/Desktop/Mall/Mall/Classes/GlobalConstants/PrefixHeader.pch;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mall/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

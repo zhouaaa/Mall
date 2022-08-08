@@ -24,7 +24,6 @@ extension UIViewController {
         static var titleFont = "HXNavigationBarKeys_titleFont"
         static var shadowHidden = "HXNavigationBarKeys_shadowHidden"
         static var shadowColor = "HXNavigationBarKeys_shadowColor"
-        static var enablePopGesture = "HXNavigationBarKeys_enablePopGesture"
     }
 
     /// 导航栏样式，默认样式
@@ -149,16 +148,6 @@ extension UIViewController {
         set {
             objc_setAssociatedObject(self, &HXNavigationBarKeys.shadowColor, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
             hx_setNeedsNavigationBarShadowUpdate()
-        }
-    }
-    
-    /// 是否开启手势返回，默认开启
-    var hx_enablePopGesture: Bool {
-        get {
-            return objc_getAssociatedObject(self, &HXNavigationBarKeys.enablePopGesture) as? Bool ?? true
-        }
-        set {
-            objc_setAssociatedObject(self, &HXNavigationBarKeys.enablePopGesture, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
     }
     

@@ -26,7 +26,6 @@ class MMHomeRankView: UIView {
         self.titleLeftLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.snp.left).offset(STtrans(6))
             make.top.equalTo(self.snp.top).offset(STtrans(10))
-            make.width.equalTo("全网热销榜".width(for: UIFont.boldSystemFont(ofSize: 15)))
             make.height.equalTo(STtrans(18))
         }
         
@@ -188,7 +187,7 @@ class MMHomeRankCollectionCell: UICollectionViewCell {
     
     func reladRankCollectCell(cellData: MMHomeRankModel) {
         
-        self.iconImageV.setImageWith(URL(string: cellData.mainPic ?? ""), placeholder: kGlobalDefultImage)
+        self.iconImageV.setImageWithURL(cellData.mainPic)
         
     }
     

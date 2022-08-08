@@ -58,7 +58,7 @@ class MMHomeMarqueeView: UIView, SDCycleScrollViewDelegate {
     
     private lazy var iconImageV: UIImageView = {
         let _v = UIImageView()
-        _v.setImageWith(URL(string: "https://cmsstaticv2.ffquan.cn/img/icon1.323c6360.png"), placeholder: kGlobalDefultImage)
+        _v.setImageWithURL("https://cmsstaticv2.ffquan.cn/img/icon1.323c6360.png")
         return _v
     }()
     

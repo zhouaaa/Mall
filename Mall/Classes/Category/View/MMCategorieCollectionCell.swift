@@ -41,7 +41,7 @@ class MMCategorieCollectionCell: UICollectionViewCell {
     
     func setListData(_ model: MMCategorySubcategoriesModel) {
         nameLabel.text = model.subcname
-        goodImageV.setImageWith(URL(string: model.scpic ?? ""))
+        goodImageV.setImageWithURL(model.scpic)
     }
     
     

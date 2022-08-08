@@ -7,7 +7,7 @@
 
 import UIKit
 import JXSegmentedView
-import YYKit
+
 
 
 class MMGoodsDetailsTbController: MMBaseViewController {
@@ -244,7 +244,7 @@ extension MMGoodsDetailsTbController: UICollectionViewDelegate, UICollectionView
             }else if indexPath.row == 1 {
                 return CGSize(width: collectionView.width, height: 200.0)
             } else if indexPath.row == 2 {
-                return CGSize(width: collectionView.width, height: (self.currentGoodModel?.desc?.height(for: UIFont.df_getCustomFontType(with: .Regular, fontSize: 14) ?? UIFont.systemFont(ofSize: 14), width: (kScreenWidth - 48)) ?? 0) + STtrans(30) + 26)
+                return CGSize(width: collectionView.width, height: STtrans(200) + STtrans(30) + 26)
             } else {
                 return CGSize(width: collectionView.width, height: STtrans(64))
             }

@@ -157,13 +157,13 @@ class MMGoodsDetailsPriceCollectionCell: UICollectionViewCell {
     
     private lazy var coupLeftImageV: UIImageView = {
         let _v = UIImageView()
-        _v.setImageWith(URL(string: "https://cmsstaticv2.ffquan.cn/img/quanleft.dcece460.png"), placeholder: kGlobalDefultImage)
+        _v.setImageWithURL("https://cmsstaticv2.ffquan.cn/img/quanleft.dcece460.png")
         return _v
     }()
     
     private lazy var coupRightImageV: UIImageView = {
         let _v = UIImageView()
-        _v.setImageWith(URL(string: "https://cmsstaticv2.ffquan.cn/img/quanright.ca29e942.png"), placeholder: kGlobalDefultImage)
+        _v.setImageWithURL( "https://cmsstaticv2.ffquan.cn/img/quanright.ca29e942.png")
         return _v
     }()
     

@@ -53,7 +53,7 @@ class MMGoodsDetailsDesCollectionCell: UICollectionViewCell {
     
     private lazy var iconImageV: UIImageView = {
         let _v = UIImageView()
-        _v.setImageWith(URL(string: "https://cmsstaticv2.ffquan.cn/img/head.fb5d716f.png"), placeholder: UIImage(data: Data(base64Encoded: desString)!))
+        _v.setImageWithURL("https://cmsstaticv2.ffquan.cn/img/head.fb5d716f.png")
         return _v
     }()
     

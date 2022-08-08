@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import YYKit
+
 
 class MMCategoryListCollectionCell: UICollectionViewCell {
     
@@ -83,25 +83,35 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
         } else if cellType == 1 {
             iconImageV.image = UIImage(data: Data(base64Encoded: kGlobalJdIcon)!)
         } else {
-            iconImageV.setImageWith(NSURL(string: "https://cmsstaticv2.ffquan.cn/img/dy.83050328.png") as URL?, placeholder: kGlobalDefultImage)
+            iconImageV.setImageWithURL("https://cmsstaticv2.ffquan.cn/img/dy.83050328.png")
         }
         
-        let _imageAtt = NSAttributedString.attachmentString(withContent: iconImageV, contentMode: .scaleAspectFit, attachmentSize: iconImageV.size, alignTo: UIFont.systemFont(ofSize: 15), alignment: YYTextVerticalAlignment.center)
-        titleAttributed.insert(_imageAtt, at: 0)
+        
+        let _imageAtt = NSTextAttachment()
+        _imageAtt.image = iconImageV.image
+        _imageAtt.bounds = CGRect(x: 0, y: 0, width: 14, height: 14)
+        if #available(iOS 15.0, *) {
+            _imageAtt.lineLayoutPadding = 4
+        } else {
+            // Fallback on earlier versions
+        }
+        titleAttributed.insert(NSMutableAttributedString(attachment: _imageAtt), at: 0)
         titleLabel.attributedText = titleAttributed
         
         
         var priceString: String = ""
         if cellType == 0 {
-            self.goodImageV.setImageWith(URL(string: cellData.mainPic ?? ""), placeholder: kGlobalDefultImage)
+            self.goodImageV.setImageWithURL(cellData.mainPic)
             self.sallLabel.text = "已售: \(cellData.monthSales.formatUsingAbbrevation())"
             priceString = "折后价 ¥: \(cellData.actualPrice)"
         } else if cellType == 1 {
-            self.goodImageV.setImageWith(URL(string: cellData.imageUrlList?[0] ?? ""), placeholder: kGlobalDefultImage)
+            self.goodImageV.setImageWithURL(cellData.imageUrlList?[0])
             self.sallLabel.text = "已售: \(cellData.inOrderCount30Days ?? 0)"
             priceString = "¥: \(cellData.lowestPrice ?? 0.00)"
         } else {
-            self.goodImageV.setImageWith(URL(string: cellData.cover ?? ""), placeholder: kGlobalDefultImage)
+            
+            self.goodImageV.setImageWithURL(cellData.cover)
+            
             self.sallLabel.text = "已售: \(cellData.sales ?? 0)"
             priceString = "¥: \(cellData.price)"
         }
@@ -123,8 +133,8 @@ class MMCategoryListCollectionCell: UICollectionViewCell {
         return _v
     }()
     
-    private lazy var titleLabel: YYLabel = {
-        let _lab = YYLabel()
+    private lazy var titleLabel: UILabel = {
+        let _lab = UILabel()
         _lab.textColor = UIColor.hexColor(0x333333)
         _lab.font = UIFont.systemFont(ofSize: 14)
         _lab.textAlignment = .left

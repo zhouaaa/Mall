@@ -7,7 +7,7 @@
 
 import UIKit
 import JXSegmentedView
-import YYKit
+
 
 class MMNineRecomController: MMBaseViewController {
 

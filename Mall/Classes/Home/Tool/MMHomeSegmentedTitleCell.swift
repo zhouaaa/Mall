@@ -27,15 +27,15 @@ class MMHomeSegmentedTitleCell: JXSegmentedTitleCell {
         let labelSize = titleLabel.sizeThatFits(self.contentView.bounds.size)
         let labelBounds = CGRect(x: 0, y: 0, width: labelSize.width, height: labelSize.height)
         titleLabel.bounds = labelBounds
-        titleLabel.center = CGPoint(x: contentView.centerX, y: contentView.centerY*0.5)
+        titleLabel.center = CGPoint(x: contentView.center.x, y: contentView.center.y*0.5)
 
         maskTitleLabel.bounds = labelBounds
-        maskTitleLabel.center = CGPoint(x: contentView.centerX, y: contentView.centerY*0.65)
+        maskTitleLabel.center = CGPoint(x: contentView.center.x, y: contentView.center.y*0.65)
         
         let subSize = subLabel.sizeThatFits(self.contentView.bounds.size)
         let subBounds = CGRect(x: 0, y: 0, width: subSize.width + subSize.height * 1.4, height: subSize.height*1.4)
         subLabel.bounds = subBounds
-        subLabel.center = CGPoint(x: contentView.centerX, y: contentView.centerY*1.4)
+        subLabel.center = CGPoint(x: contentView.center.x, y: contentView.center.y*1.4)
         subLabel.layer(radius: subSize.height*0.7, borderWidth: 0.0, borderColor: UIColor.white)
         
     }

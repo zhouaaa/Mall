@@ -1,3 +1,4 @@
+ source 'https://github.com/CocoaPods/Specs.git'
 # Uncomment the next line to define a global platform for your project
  platform :ios, '10.0'
 
@@ -6,33 +7,37 @@ target 'Mall' do
   use_frameworks!
 
   # Pods for Mall
-
-  pod 'SnapKit'
   pod 'Alamofire'
-  pod 'Moya'
   pod 'Moya/RxSwift'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'NSObject+Rx'
+  pod 'SwifterSwift'
+  pod 'SwiftDate'
+  pod 'SnapKit'
   pod 'HandyJSON'
   pod 'SwiftyJSON'
+  
   pod "ESTabBarController-swift"
-  pod 'RxSwift'
-  pod 'RxSwiftExt/Core'
-  pod 'NSObject+Rx'
-  pod 'R.swift'                      #文件
-  #渐变背景
-  pod "Pastel"
+  pod 'EmptyDataSet-Swift'
+  pod 'BottomPopup'
+  
+  pod 'Kingfisher'
+  
+  
   #轮播图
   pod 'SDCycleScrollView'
   #下拉上拉加载
   pod 'MJRefresh'
-  #空视图
-  pod 'DZNEmptyDataSet'
+  pod "Pastel"
   pod 'JXSegmentedView'
   pod 'JXPagingView/Paging'
+  
   #格式化
   pod 'SwiftLint'
-  pod 'YYKit'
-  #图片浏览器
-  pod 'Lantern', '1.1.2'
-  pod 'Toast-Swift', '~> 5.0.1'
+  
+  pod 'Toast-Swift'
+  pod 'SKPhotoBrowser'
+  pod 'FDFullscreenPopGesture'
   
 end

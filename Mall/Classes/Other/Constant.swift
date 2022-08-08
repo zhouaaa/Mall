@@ -12,12 +12,19 @@ let kScreenWidth: CGFloat = UIScreen.main.bounds.size.width
 
 let kScreenHeight: CGFloat = UIScreen.main.bounds.size.height
 
+/// 状态栏高度
+let kStatusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+
+/// 底部安全区高度
 let kSafeBottomMargin : CGFloat = (isIPhoneX ? 34 : 0)
 
+/// 导航栏
 let kNavigationBarHeight : CGFloat = isIPhoneX ? 88 : 64
 
+///  TabBar高度
 let kTabBarHeight : CGFloat = isIPhoneX ? 49 + 34 : 49
 
+/// 头部刘海高度
 let kSafeTopMargin : CGFloat = (isIPhoneX ? 24 : 0)
 
 let screenFrame:CGRect = UIScreen.main.bounds
@@ -41,11 +48,6 @@ let kSystemVersion = UIDevice.current.systemVersion
 //系统版本
 let IOS9  = (Double(kSystemVersion) ?? 9.0 >= 9.0)
 
-
-public var kStatusBarHeight: CGFloat {
-    
-    return UIApplication.shared.statusBarFrame.height
-}
 
 // 屏幕缩放函数
 func STtrans(_ length:CGFloat) -> (CGFloat) {

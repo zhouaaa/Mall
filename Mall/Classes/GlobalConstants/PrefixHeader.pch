@@ -1,0 +1,31 @@
+//
+//  PrefixHeader.pch
+//  Mall
+//
+//  Created by iOS on 2022/8/5.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+@import Alamofire;
+@import Moya;
+
+@import RxSwift;
+@import HandyJSON;
+@import SwiftyJSON;
+
+@import RxCocoa;
+@import NSObject_Rx;
+
+@import SnapKit;
+@import SwifterSwift;
+
+@import EmptyDataSet_Swift;
+@import IQKeyboardManagerSwift;
+@import FDFullscreenPopGesture;
+@import Pastel;
+
+
+#endif /* PrefixHeader_pch */

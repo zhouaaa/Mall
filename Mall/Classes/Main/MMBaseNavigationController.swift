@@ -13,15 +13,6 @@ class MMBaseNavigationController: HXNavigationController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-//        self.setupNavigationBar()
-        
-        
-//        let target = self.interactivePopGestureRecognizer?.delegate
-//        let pan:UIPanGestureRecognizer = UIPanGestureRecognizer.init(target: target!, action: Selector(("handleNavigationTransition:")))
-//        pan.delegate = self
-//        self.view.addGestureRecognizer(pan)
-//        self.interactivePopGestureRecognizer?.isEnabled = false
     }
 
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {

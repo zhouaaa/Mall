@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import YYKit
+
 
 class MMPreferentMainListModel: HandyJSONModel {
     

@@ -32,7 +32,7 @@ class MMGoodsDetailsPicCollectionCell: UICollectionViewCell {
     
     func setDetailPic(cellImtem: MMCategoryGoodDetailPicsModel) {
 
-        self.picImageV.setImageWith(URL(string: cellImtem.img?.contains(find: "https") ?? false ? cellImtem.img ?? "" : "http:\(cellImtem.img ?? "")"), placeholder: kGlobalDefultImage)
+        self.picImageV.setImageWithURL( cellImtem.img?.contains(find: "https") ?? false ? cellImtem.img ?? "" : "http:\(cellImtem.img ?? "")")
         
     }
     

@@ -66,7 +66,7 @@ class MMHomePageCollectionGoodCell: UICollectionViewCell {
     
     func cellItemData(itemModel: MMHomeGoodItemModel) {
        
-        self.iconImageV.setImageWith(URL(string: itemModel.mainPic ?? ""), placeholder: kGlobalDefultImage)
+        self.iconImageV.setImageWithURL(itemModel.mainPic)
         
         self.sallLabel.text = "已售: \(itemModel.monthSales.formatUsingAbbrevation())"
         

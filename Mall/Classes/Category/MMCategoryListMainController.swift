@@ -10,16 +10,6 @@ import JXPagingView
 import JXSegmentedView
 
 class MMCategoryListMainController: MMBaseViewController {
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.hx_enablePopGesture = (self.segmentView.selectedIndex == 0)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.hx_enablePopGesture = true
-    }
     
     convenience init(listKeyWordModel: MMCategorySubcategoriesModel) {
         self.init(nibName: nil, bundle: nil)
@@ -118,7 +108,6 @@ extension MMCategoryListMainController: JXSegmentedListContainerViewDataSource, 
     
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
         self.listContainerView.didClickSelectedItem(at: index)
-        self.navigationController?.hx_enablePopGesture = (segmentedView.selectedIndex == 0)
     }
     
     func segmentedView(_ segmentedView: JXSegmentedView, canClickItemAt index: Int) -> Bool {

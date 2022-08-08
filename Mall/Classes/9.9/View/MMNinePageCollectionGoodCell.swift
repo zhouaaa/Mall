@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import YYKit
+
 
 
 class MMNinePageCollectionGoodCell: UICollectionViewCell {
@@ -67,8 +67,8 @@ class MMNinePageCollectionGoodCell: UICollectionViewCell {
     
     func cellItemData(itemModel: MMNineGoodItemModel) {
        
-        self.iconImageV.setImageWith(URL(string: itemModel.pic ?? ""), placeholder: kGlobalDefultImage)
-        
+    
+        self.iconImageV.setImageWithURL(itemModel.pic)
         self.sallLabel.text = "已售: \(itemModel.xiaoliang.formatUsingAbbrevation())"
         
         let priceString: String = "券后价 ¥ \(itemModel.jiage)"
